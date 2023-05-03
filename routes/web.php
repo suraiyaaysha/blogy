@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,9 +49,14 @@ Route::get('/', function () {
 });
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Admin Panel Routes Start
 |--------------------------------------------------------------------------
 */
+// Route::get('/admin/dashboard', function () {
+//     return view('admin.dashboard');
+// });
+Route::get('/admin/dashboard', [HomeController::class, 'index'])->middleware('auth')->name('admin.dashboard');
+
+Route::resource('/admin/categories/', CategoryController::class);

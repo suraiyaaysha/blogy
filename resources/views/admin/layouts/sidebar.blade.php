@@ -10,7 +10,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="admin/assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ Auth()->user()->profile_photo }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ Auth()->user()->name }}</a>
@@ -36,7 +36,7 @@
                with font-awesome or any other icon font library -->
 
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="{{ '/admin/dashboard' }}" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -45,11 +45,9 @@
           </li>
 
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="{{ '/admin/categories' }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p>
-                Widgets
-              </p>
+              <p>{{ __('Categories') }}</p>
             </a>
           </li>
 
