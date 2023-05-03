@@ -21,6 +21,7 @@ class AdminSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('12345678'), //password is '12345678'
             'user_type' => 1,
+            'profile_photo' => 'admin/assets/img/user2-160x160.jpg',
         ]);
 
         // Default User
@@ -30,6 +31,7 @@ class AdminSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('12345678'), //password is '12345678'
             'user_type' => 0,
+            'profile_photo' => 'admin/assets/img/user2-160x160.jpg',
         ]);
     }
 }

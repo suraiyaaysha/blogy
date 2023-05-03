@@ -34,6 +34,21 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
+
+        // Profile photo
+        if ($request->hasFile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            // $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // $extension = $request->file('profile_photo')->getClientOriginalExtension();
+            // $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            // $path = $request->file('profile_photo')->storeAs('uploads/profile', $fileNameToStore);
+            $url = $file->move('uploads/profile' , $file->hashName());
+            auth()->user()->update(['profile_photo' => $url]);
+        }
+        // Profile photo
+
+
+
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
