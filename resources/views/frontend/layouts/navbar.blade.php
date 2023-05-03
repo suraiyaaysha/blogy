@@ -52,6 +52,22 @@
                         <li><a href="#" class="main-menu-item">Food</a></li>
                         <li><a href="#" class="main-menu-item">Lifestyle</a></li>
                         <li><a href="#" class="main-menu-item">Fashion</a></li>
+
+                        @if (Route::has('login'))
+                            {{-- <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right"> --}}
+                                @auth
+                                    {{-- <li><a href="{{ url('/home') }}" class="main-menu-item">Dashboard</a></li> --}}
+                                    <x-app-layout></x-app-layout>
+                                @else
+                                    <li><a href="{{ route('login') }}" class="main-menu-item">Log in</a></li>
+
+                                    @if (Route::has('register'))
+                                        <li><a href="{{ route('register') }}" class="main-menu-item">Register</a></li>
+                                    @endif
+                                @endauth
+                            {{-- </div> --}}
+                        @endif
+
                     </ul>
                     <form action="search.html">
                         <div class="header-searchbar">

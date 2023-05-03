@@ -1204,7 +1204,7 @@ Version      : 1.0
 }
 
 .header {
-  overflow: hidden !important;
+  /* overflow: hidden !important; */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
