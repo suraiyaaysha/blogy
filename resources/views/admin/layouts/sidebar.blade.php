@@ -1,7 +1,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="admin/dashboard" class="brand-link">
-      <img src="admin/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="{{ url('admin/dashboard') }}" class="brand-link">
+      <img src="{{ asset(url('admin/assets/img/AdminLTELogo.png')) }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
@@ -10,10 +10,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ Auth()->user()->profile_photo }}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset(Auth::user()->profile_photo) }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth()->user()->name }}</a>
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -36,7 +36,7 @@
                with font-awesome or any other icon font library -->
 
           <li class="nav-item">
-            <a href="{{ '/admin/dashboard' }}" class="nav-link active">
+            <a href="{{ url('admin/dashboard') }}" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -45,18 +45,16 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ '/admin/categories' }}" class="nav-link">
+            <a href="{{ url('/admin/category') }}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>{{ __('Categories') }}</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="pages/kanban.html" class="nav-link">
+            <a href="{{ url('/admin/posts') }}" class="nav-link">
               <i class="nav-icon fas fa-columns"></i>
-              <p>
-                Kanban Board
-              </p>
+              <p>{{ __('Blog Posts') }}</p>
             </a>
           </li>
 

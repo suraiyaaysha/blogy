@@ -15,23 +15,27 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         Category::create([
-            'category_name' => 'Travel',
-            'category_label' => 'Featured Category',
+            'name' => 'Travel',
+            'slug' => 'travel',
+            'label' => 'Featured Category',
         ]);
 
         Category::create([
-            'category_name' => 'Food',
-            'category_label' => 'Top Category',
+            'name' => 'Food',
+            'slug' => 'food',
+            'label' => 'Top Category',
         ]);
 
         Category::create([
-            'category_name' => 'Live Style',
-            'category_label' => 'Summer Category',
+            'name' => 'Life Style',
+            'slug' => 'life-style',
+            'label' => 'Summer Category',
         ]);
 
         Category::create([
-            'category_name' => 'Fashion',
-            'category_label' => 'Winter Category',
+            'name' => 'Fashion',
+            'slug' => 'fashion',
+            'label' => 'Winter Category',
         ]);
     }
 }

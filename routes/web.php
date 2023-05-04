@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +57,38 @@ Route::get('/', function () {
 */
 // Route::get('/admin/dashboard', function () {
 //     return view('admin.dashboard');
-// });
-Route::get('/admin/dashboard', [HomeController::class, 'index'])->middleware('auth')->name('admin.dashboard');
+// })->middleware(['auth', 'admin'])->name('dashboard');
 
-Route::resource('/admin/categories/', CategoryController::class);
+// Route::get('admin/dashboard', [HomeController::class, 'index'])->middleware('auth')->name('admin.dashboard');
+
+Route::prefix('admin')->group(function () {
+
+    Route::middleware('auth')->group(function () {
+        // Dashboard
+        Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+        // Category Route
+
+        // Route::controller(App\Http\Controllers\CategoryController::class)->group(function () {
+        //     Route::get('category', 'index');
+        // });
+
+        Route::get('category', [CategoryController::class, 'index'])->name('category.index');
+        Route::get('category/create', [CategoryController::class, 'create'])->name('category.create');
+        // Route::post('category/store', [CategoryController::class, 'store'])->name('category.store');
+        Route::post('category', [CategoryController::class, 'store'])->name('category.store');
+        Route::get('category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+        Route::put('category/{id}/update', [CategoryController::class, 'update'])->name('category.update');
+        Route::delete('category/{id}/delete', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+        // Blog Route
+        Route::controller(App\Http\Controllers\Admin\PostController::class)->group(function () {
+            Route::get('posts', 'index');
+            Route::get('posts/create', 'create');
+            Route::post('posts', 'store');
+            Route::get('posts/{post}/edit', 'edit');
+            Route::get('posts/{post}', 'update');
+        });
+    });
+
+});
