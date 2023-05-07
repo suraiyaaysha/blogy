@@ -14,6 +14,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset(url('admin/assets/css/adminlte.min.css')) }}">
   <link rel="stylesheet" href="{{ asset(url('admin/assets/css/custom.css')) }}">
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <!--
 `body` tag options:

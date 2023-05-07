@@ -15,6 +15,7 @@ class Post extends Model
         'title',
         'thumbnail',
         'details',
+        'reading_duration'
     ];
 
     public function category() {

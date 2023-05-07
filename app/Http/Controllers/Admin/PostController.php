@@ -42,7 +42,9 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             // 'thumbnail' => 'nullable|mimes:jpeg,jpg,png|max:15000',
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:15000',
             'details' => 'required',
+            'reading_duration' => 'required',
         ]);
 
     // Different way to save start
@@ -58,11 +60,16 @@ class PostController extends Controller
     // Different way to save end
 
         $category = Category::findOrFail($request->category_id);
+
+        $file = $request->thumbnail;
+        $url = $file->move('uploads/blog-img' , $file->hashName());
+
         $category->posts()->create([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'details' => $request->details,
-            'thumbnail' => $request->thumbnail,
+            'reading_duration' => $request->reading_duration,
+            'thumbnail' => $url,
         ]);
 
         // return back()->withSuccess('Category created successfully');
@@ -73,9 +80,12 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(int $post)
     {
-        //
+        $categories =Category::all();
+
+        $post = Post::findOrFail($post);
+        return view('admin.post.show', compact('categories', 'post'));
     }
 
     /**
@@ -93,16 +103,55 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $post_id)
     {
-        //
+    // Different way to Update start
+        // $post = Category::findOrFail($request->category_id)->posts()->where('id', $post_id)->first();
+
+        // $post->title = $request->title;
+        // $post->slug = Str::slug($request->title);
+        // $post->details = $request->details;
+
+        // $post->update();
+
+    // Different way to Update end
+
+        // validate data
+        $request->validate([
+            'title' => 'required|max:255',
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:15000',
+            'details' => 'required',
+            'reading_duration' => 'required',
+        ]);
+
+        $category = Category::findOrFail($request->category_id);
+
+        if ($request->hasFile('thumbnail')) {
+            $file = $request->thumbnail;
+            $url = $file->move('uploads/blog-img' , $file->hashName());
+        } else {
+            $url = $category->posts()->find($post_id)->thumbnail;
+        }
+
+        $category->posts()->where('id', $post_id)->update([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'details' => $request->details,
+            'reading_duration' => $request->reading_duration,
+            'thumbnail' => $url,
+        ]);
+
+        return redirect('admin/posts')->with('message', 'Post Updated successfully');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    // public function destroy(Post $post)
+    public function destroy(int $post_id)
     {
-        //
+        Post::findOrFail($post_id)->delete();
+        return redirect('admin/posts')->with('message', 'Post Deleted successfully');
     }
 }

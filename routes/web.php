@@ -87,7 +87,10 @@ Route::prefix('admin')->group(function () {
             Route::get('posts/create', 'create');
             Route::post('posts', 'store');
             Route::get('posts/{post}/edit', 'edit');
-            Route::get('posts/{post}', 'update');
+            Route::put('posts/{post}', 'update');
+            // Route::get('posts/{post_id}/delete', 'destroy');  for a tag delete
+            Route::delete('posts/{post_id}/delete', 'destroy');
+            Route::get('posts/{post}/show', 'show');
         });
     });
 

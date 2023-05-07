@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('thumbnail');
             $table->longText('details');
+            $table->string('reading_duration');
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 

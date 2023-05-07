@@ -66,10 +66,10 @@
                                                 <div class="d-flex">
                                                     <a href="/admin/category/{{ $category->id }}/edit" class="btn btn-primary mr-2">Edit</a>
 
-                                                    <form action="/admin/category/{{ $category->id }}/delete" method="POST">
+                                                    <form action="/admin/category/{{ $category->id }}/delete" method="POST" class="delete-form">
                                                     @csrf
                                                     @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger bg-danger" onclick="return confirm('Are you sure to delete Category?')">Delete</button>
+                                                        <button type="submit" class="btn btn-danger bg-danger">Delete</button>
                                                     </form>
 
                                                 </div>
@@ -93,4 +93,29 @@
         <!-- /.container-fluid -->
     </div>
     <!-- /.content -->
+@endsection
+
+@section('scripts')
+<script>
+ // Add an event listener to the delete button
+    $('.delete-form').on('submit', function(e) {
+        e.preventDefault(); // Prevent the form from submitting
+        var form = this;
+        // Use SweetAlert2 to display a confirmation dialog
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this post!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                // If the user clicks OK, submit the form
+                form.submit();
+            }
+        });
+    });
+</script>
 @endsection

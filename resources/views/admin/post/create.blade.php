@@ -79,10 +79,20 @@
 
                                 <div class="form-group">
                                     <label>Details</label>
-                                    <textarea class="form-control" name="details" id="" cols="20" rows="5" placeholder="Post details">{{ old('details') }}</textarea>
+                                    <textarea class="ckeditor form-control" name="details" id="" cols="20" rows="5" placeholder="Post details">{{ old('details') }}</textarea>
 
                                     @if ($errors->has('details'))
                                         <span class="text-danger">{{ $errors->first('details') }}</span>
+                                    @endif
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Reading Duration</label>
+                                    <input type="text" class="form-control" name="reading_duration" value="{{ old('reading_duration') }}" placeholder="Reading Duration">
+
+                                    @if ($errors->has('reading_duration'))
+                                        <span class="text-danger">{{ $errors->first('reading_duration') }}</span>
                                     @endif
 
                                 </div>

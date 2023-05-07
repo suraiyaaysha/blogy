@@ -30,5 +30,18 @@
 <script src="{{ asset(url('admin/assets/js/demo.js')) }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset(url('admin/assets/js/pages/dashboard3.js')) }}"></script>
+
+<!-- For CK Editor -->
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.ckeditor').ckeditor();
+        });
+</script>
+<!-- For CK Editor -->
+
+<!-- Include scripts from child views -->
+    @yield('scripts')
+
 </body>
 </html>
