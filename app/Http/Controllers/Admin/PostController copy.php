@@ -64,15 +64,13 @@ class PostController extends Controller
         $file = $request->thumbnail;
         $url = $file->move('uploads/blog-img' , $file->hashName());
 
-         $post = Auth::user()->posts()->create([
+        $category->posts()->create([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'details' => $request->details,
             'reading_duration' => $request->reading_duration,
             'thumbnail' => $url,
         ]);
-
-        $category->posts()->save($post);
 
         // return back()->withSuccess('Category created successfully');
         return redirect('admin/posts')->with('message', 'Post created successfully');

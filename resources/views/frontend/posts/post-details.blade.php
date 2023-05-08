@@ -2,7 +2,6 @@
 
     <!-- Blog Details Banner Starts Here -->
     <section class="details-banner" style="background-image: url('{{ asset(url($post->thumbnail)) }}')">
-        {{-- <img src="{{ asset(url($post->thumbnail)) }}" alt="Background Image" class="img-fluid w-100">> --}}
     </section>
     <!-- Blog Details Banner Ends Here -->
 
@@ -20,11 +19,9 @@
 
                                 <div class="intro-start-author">
                                     <div class="author-image">
-                                        {{-- <img src="dist/images/authorsm.png" alt="Author"> --}}
-                                        {{-- <img src="{{ asset(Auth::user()->profile_photo) }}" alt="Author"> --}}
+                                        <img src="{{ asset($post->user->profile_photo) }}" alt="Author">
                                     </div>
-                                    {{-- <a href="#" class="fs-6">{{ Auth::user()->name }}</a> --}}
-                                    <a href="#" class="fs-6">{{ __('Admin') }}</a>
+                                    <a href="#" class="fs-6">{{ $post->user->name }}</a>
                                 </div>
 
                                 <div class="intro-start-release d-flex">

@@ -58,6 +58,10 @@ class FrontendController extends Controller
         // Show all posts to home page
         $allPosts = Post::latest()->take(3)->get();
 
+        // Show Featured Post based on post views
+        $featuredPost = Post::orderBy('views', 'desc')->take(2)->get();
+
+
 
         // Get the Recent 3 posts
         $recentPosts = Post::latest()->take(3)->get();
@@ -66,7 +70,7 @@ class FrontendController extends Controller
         $latestPosts = Post::latest()->take(6)->get();
 
         // Pass the posts to the home view
-        return view('frontend.home', compact('latestPosts', 'recentPosts', 'allPosts' ,'featuredCategories'));
+        return view('frontend.home', compact('latestPosts', 'recentPosts', 'featuredPost', 'allPosts' ,'featuredCategories'));
     }
     // Show Posts to Home Page End
 
