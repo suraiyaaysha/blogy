@@ -1744,3 +1744,26 @@ footer .copy-right p a:hover {
   }
 }
 /*# sourceMappingURL=main.css.map */
+
+/* Extra CSS for Dynamic Start */
+
+/* Post details page */
+section.details-banner {
+    height: 500px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Pagination */
+.pagination {
+    justify-content: center;
+}
+
+/* home page css */
+.custom-btn {
+    height: auto;
+    padding: 12px 29px;
+}
+
+/* Extra CSS for Dynamic Start */

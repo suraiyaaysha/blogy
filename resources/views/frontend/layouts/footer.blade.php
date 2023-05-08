@@ -4,7 +4,7 @@
             <div class="row justify-content-lg-between">
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-info">
-                        <a href="index.html">
+                        <a href="/">
                             <svg width="120" height="40" viewBox="0 0 120 40" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -49,10 +49,11 @@
                     <div class="footer-wizard">
                         <h6>Category</h6>
                         <ul class="list-unstyled">
-                            <li><a href="#">Travel</a></li>
-                            <li><a href="#">Food</a></li>
-                            <li><a href="#">Lifestyle</a></li>
-                            <li><a href="#">Fashion</a></li>
+                            <!-- Show Featured Category start -->
+                            @foreach ($featuredCategories as $category)
+                                <li><a href="#">{{ $category->name }}</a></li>
+                            @endforeach
+                            <!-- Show Featured Category end -->
                         </ul>
                     </div>
                 </div>

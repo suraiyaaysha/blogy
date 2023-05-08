@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="{{ url('admin/dashboard') }}" class="brand-link">
       <img src="{{ asset(url('admin/assets/img/AdminLTELogo.png')) }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">{{ __('AdminLTE 3') }}</span>
     </a>
 
     <!-- Sidebar -->
@@ -39,7 +39,7 @@
             <a href="{{ url('admin/dashboard') }}" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                {{ __('Dashboard') }}
               </p>
             </a>
           </li>

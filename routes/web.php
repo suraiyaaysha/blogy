@@ -47,13 +47,24 @@ require __DIR__.'/auth.php';
 | Frontend Routes Start
 |--------------------------------------------------------------------------
 */
-
+// Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::get('/', function () {
     return view('frontend.home');
 });
 
+// Get Featured Category
 Route::get('/', [FrontendController::class, 'featuredCategory']);
 
+// Get Recent and Latest Posts
+Route::get('/', [FrontendController::class, 'latestPost']);
+
+// Only Posts Page
+Route::get('/posts', [FrontendController::class, 'allPosts']);
+Route::get('/posts/{post_slug}', [FrontendController::class, 'postDetails']);
+// Only Posts Page
+
+
+// Category, Post, Category wise posts
 Route::get('/collections', [FrontendController::class, 'index']);
 Route::get('/collections/{category_slug}', [FrontendController::class, 'category']);
 Route::get('/collections/{category_slug}/{post_slug}', [FrontendController::class, 'post']);

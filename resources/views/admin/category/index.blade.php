@@ -51,7 +51,7 @@
                                         <th style="width: 10px">#</th>
                                         <th>Category name</th>
                                         <th>Category Slug</th>
-                                        <th>Category Label</th>
+                                        <th>Category Label(Featured or Not Featured)</th>
                                         <th style="width: 40px">Action</th>
                                     </tr>
                                 </thead>
@@ -61,7 +61,15 @@
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $category->name }}</td>
                                             <td>{{ $category->slug }}</td>
-                                            <td>{{ $category->is_featured }}</td>
+                                            <td>
+                                                {{-- {{ $category->is_featured }} --}}
+                                                {{-- {{ $category->is_featured ? 'Featured' : 'Not Featured' }} --}}
+                                                @if ($category->is_featured)
+                                                    <p class="badge badge-success">Featured</p>
+                                                @else
+                                                    <p class="badge badge-light">Not Featured</p>
+                                                @endif
+                                            </td>
                                             <td>
                                                 <div class="d-flex">
                                                     <a href="/admin/category/{{ $category->id }}/edit" class="btn btn-primary mr-2">Edit</a>
