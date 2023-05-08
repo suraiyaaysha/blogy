@@ -67,7 +67,7 @@
 
                                 </div> --}}
 
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label>Category Label</label>
                                     <input type="text" class="form-control" name="label" value="{{ old('label') }}" placeholder="Category Label">
 
@@ -75,6 +75,13 @@
                                         <span class="text-danger">{{ $errors->first('label') }}</span>
                                     @endif
 
+                                </div> --}}
+
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" name="is_featured" value="0">
+                                        Is Featured
+                                    </label>
                                 </div>
 
                                 {{-- <div class="form-check">

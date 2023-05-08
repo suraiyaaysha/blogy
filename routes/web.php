@@ -7,6 +7,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PostController;
 
+use App\Http\Controllers\FrontendController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,9 +47,16 @@ require __DIR__.'/auth.php';
 | Frontend Routes Start
 |--------------------------------------------------------------------------
 */
+
 Route::get('/', function () {
     return view('frontend.home');
 });
+
+Route::get('/', [FrontendController::class, 'featuredCategory']);
+
+Route::get('/collections', [FrontendController::class, 'index']);
+Route::get('/collections/{category_slug}', [FrontendController::class, 'category']);
+Route::get('/collections/{category_slug}/{post_slug}', [FrontendController::class, 'post']);
 
 
 /*

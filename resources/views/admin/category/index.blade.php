@@ -61,7 +61,7 @@
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $category->name }}</td>
                                             <td>{{ $category->slug }}</td>
-                                            <td>{{ $category->label }}</td>
+                                            <td>{{ $category->is_featured }}</td>
                                             <td>
                                                 <div class="d-flex">
                                                     <a href="/admin/category/{{ $category->id }}/edit" class="btn btn-primary mr-2">Edit</a>

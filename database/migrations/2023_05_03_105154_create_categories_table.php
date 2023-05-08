@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->string('label');
+            $table->boolean('is_featured')->default(false);
             $table->timestamps();
         });
     }

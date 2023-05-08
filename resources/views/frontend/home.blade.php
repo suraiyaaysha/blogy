@@ -74,6 +74,10 @@
     </section>
     <!-- Banner Ends Here -->
 
+                 {{-- @foreach ($featuredCategories as $category)
+                    <li><a href="#">{{ $category->name }}</a></li>
+                @endforeach --}}
+
     <!-- Post Feture Starts Here -->
     <section class="section-padding">
         <div class="container">

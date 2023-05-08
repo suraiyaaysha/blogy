@@ -15,10 +15,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest()->paginate(5);
+        $categories = Category::latest()->paginate(10);
         return view('admin.category.index', compact('categories'))->with(
             'i',
-            (request()->input('page', 1) - 1) *5
+            (request()->input('page', 1) - 1) *10
         );
     }
 
@@ -39,14 +39,14 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             // 'slug' => 'required|max:255',
-            'label' => 'nullable|max:255',
+            // 'label' => 'nullable|max:255',
         ]);
 
         $category = new Category;
         $category->name = $request->name;
         // $category->slug = $request->slug;
         $category->slug = Str::slug($request->name);
-        $category->label = $request->label;
+        $category->is_featured = $request->has('is_featured');
 
         $category->save();
 
@@ -82,15 +82,16 @@ class CategoryController extends Controller
         // validate data
         $request->validate([
             'name' => 'required|max:255',
-            'slug' => 'required|max:255',
-            'label' => 'nullable|max:255',
+            // 'slug' => 'required|max:255',
+            // 'label' => 'nullable|max:255',
         ]);
 
         $category = Category::where('id', $id)->first();
 
         $category->name = $request->name;
-        $category->slug = $request->slug;
-        $category->label = $request->label;
+        // $category->slug = $request->slug;
+        $category->slug = Str::slug($request->name);
+        $category->is_featured = $request->has('is_featured');
 
         $category->save();
 

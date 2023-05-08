@@ -17,25 +17,31 @@ class CategorySeeder extends Seeder
         Category::create([
             'name' => 'Travel',
             'slug' => 'travel',
-            'label' => 'Featured Category',
+            'is_featured' => true,
         ]);
 
         Category::create([
             'name' => 'Food',
             'slug' => 'food',
-            'label' => 'Top Category',
+            'is_featured' => true,
         ]);
 
         Category::create([
             'name' => 'Life Style',
             'slug' => 'life-style',
-            'label' => 'Summer Category',
+            'is_featured' => true,
         ]);
 
         Category::create([
             'name' => 'Fashion',
             'slug' => 'fashion',
-            'label' => 'Winter Category',
+            'is_featured' => true,
+        ]);
+
+        Category::create([
+            'name' => 'Women',
+            'slug' => 'women',
+            'is_featured' => false,
         ]);
     }
 }
