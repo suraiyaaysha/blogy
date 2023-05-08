@@ -92,7 +92,13 @@ class FrontendController extends Controller
 
         // $category = Category::where('slug', $category_slug)->first();
         $post = Post::where('slug', $post_slug)->first();
-        return view('frontend.posts.post-details', compact('post', 'featuredCategories'));
+
+
+        // Get related posts
+        $relatedPosts = $post->category->posts()->where('id', '!=', $post->id)->take(2)->get();
+
+
+        return view('frontend.posts.post-details', compact('post', 'relatedPosts', 'featuredCategories'));
     }
     // Post Details page End
 
