@@ -172,19 +172,23 @@ Version      : 1.0
 }
 
 .latest-post-area {
-  background-color: #F5F5F5;
+  /* background-color: #F5F5F5; */
+  background-color: #fff;
 }
 
 .latest-post-area .blog-item-info {
-  background: #FFFFFF;
+  /* background: #FFFFFF; */
+  background: #F5F5F5;
 }
 
 .all-post-area {
-  background-color: #F5F5F5;
+  /* background-color: #F5F5F5; */
+  background-color: #fff;
 }
 
 .all-post-area .blog-item-info {
-  background: #FFFFFF;
+  /* background: #FFFFFF; */
+  background: #F5F5F5;
 }
 
 .featured-category h6 {
@@ -1386,7 +1390,8 @@ Version      : 1.0
 
 .blog-item-info {
   padding: 32px;
-  background-color: #F7F7F7;
+  /* background-color: #F7F7F7; */
+  background-color: #fff;
   max-width: 560px;
   margin-top: -70px;
   position: relative;
@@ -1428,12 +1433,13 @@ Version      : 1.0
 
 .post-feature {
   padding: 24px;
-  background-color: rgba(245, 245, 245, 0.5);
+  /* background-color: rgba(245, 245, 245, 0.5); */
+  background-color: #fff;
   -webkit-transition: 0.1s all linear;
   transition: 0.1s all linear;
 }
 
-.post-feature:hover {
+.post-feature:hover, .home-featured-category-area .post-feature:hover  {
   background-color: #FB743E;
 }
 
@@ -1446,7 +1452,8 @@ Version      : 1.0
 .post-feature:hover .btn-link,
 .post-feature:hover span,
 .post-feature:hover h6 a,
-.post-feature:hover span.fs-6 {
+.post-feature:hover span.fs-6,
+.home-featured-category-area .post-feature:hover h6 {
   color: white;
 }
 
@@ -1764,6 +1771,17 @@ section.details-banner {
 .custom-btn {
     height: auto;
     padding: 12px 29px;
+}
+.recent-post-area, .featured-post-area {
+    background-color: #F5F5F5;
+}
+.home-featured-category-area .post-feature {
+    background-color: rgba(245, 245, 245, 0.5);
+}
+
+/* Page Banner CSS */
+.page-banner-area {
+    padding: 150px 0px 150px 0px;
 }
 
 /* Extra CSS for Dynamic Start */

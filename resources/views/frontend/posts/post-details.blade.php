@@ -205,8 +205,8 @@
     <section class="blog-item-feature">
         <div class="container">
             <div class="blog-item-feature-heading">
-                <h4>You May Also Like</h4>
-                <a href="#">View All</a>
+                <h4>{{ __('You May Also Like') }}</h4>
+                <a href="#">{{ __('View All') }}</a>
             </div>
             <div class="row">
 

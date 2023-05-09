@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
 {
+    // Show All Category
     public function index() {
         // get featured category
         $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
@@ -19,18 +20,21 @@ class FrontendController extends Controller
 
         $categories = Category::all();
         // return view('frontend.categories', compact('categories'));
-        return view('frontend.categories', compact('categories', 'featuredCategories'));
+        return view('frontend.categories.index', compact('categories', 'featuredCategories'));
     }
 
+    // Show Posts under a single category
     public function category($category_slug) {
 
         $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
 
 
         $category = Category::where('slug', $category_slug)->first();
-        return view('frontend.posts', compact('category', 'featuredCategories'));
+        // return view('frontend.posts', compact('category', 'featuredCategories'));
+        return view('frontend.categories.category-posts', compact('category', 'featuredCategories'));
     }
 
+    // Post Details page for Showing post details together category_slug and post_slug Start
     public function post(string $category_slug, string $post_slug) {
 
         $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
@@ -38,12 +42,17 @@ class FrontendController extends Controller
 
         $category = Category::where('slug', $category_slug)->first();
         $post = $category->posts()->where('slug', $post_slug)->first();
+
+
+        // Get related posts
+        $relatedPosts = $post->category->posts()->where('id', '!=', $post->id)->take(2)->get();
+
         // return view('frontend.post-view', compact('post'));
-        return view('frontend.post-view', compact('post', 'category', 'featuredCategories'));
+        return view('frontend.posts.post-details', compact('post', 'relatedPosts', 'category', 'featuredCategories'));
     }
+    // Post Details page for Showing post details together category_slug and post_slug End
 
     // Show only is_featured category start
-
     public function featuredCategory(){
         $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
         return view('frontend.home', ['categories' => $featuredCategories, 'featuredCategories' => $featuredCategories]);
@@ -84,8 +93,8 @@ class FrontendController extends Controller
     }
     // Show All Posts to Posts Page End
 
-    // Post Details page Start
-        public function postDetails(string $post_slug) {
+    // Show Categories Post Details | Post Details page for showing Post Details via post_slug Start
+    public function postDetails(string $post_slug) {
 
         $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
 

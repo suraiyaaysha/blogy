@@ -64,10 +64,21 @@ Route::get('/posts/{post_slug}', [FrontendController::class, 'postDetails']);
 // Only Posts Page
 
 
-// Category, Post, Category wise posts
-Route::get('/collections', [FrontendController::class, 'index']);
-Route::get('/collections/{category_slug}', [FrontendController::class, 'category']);
-Route::get('/collections/{category_slug}/{post_slug}', [FrontendController::class, 'post']);
+// For Category, Categories posts
+Route::get('/categories', [FrontendController::class, 'index']);
+Route::get('/categories/{category_slug}', [FrontendController::class, 'category']);
+// Route::get('/categories/{category_slug}/{post_slug}', [FrontendController::class, 'post']);
+Route::get('/categories/{category_slug}/{post_slug}', [FrontendController::class, 'post']);
+
+/*
+|-----------------------------
+| Category, Post, Category wise posts
+|--------------------------------------------------------------------------
+*/
+
+// Route::get('/collections', [FrontendController::class, 'index']);
+// Route::get('/collections/{category_slug}', [FrontendController::class, 'category']);
+// Route::get('/collections/{category_slug}/{post_slug}', [FrontendController::class, 'post']);
 
 
 /*

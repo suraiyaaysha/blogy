@@ -19,7 +19,7 @@
     <!-- Theme CSS Link -->
     <link rel="stylesheet" href="{{ asset(url('frontend/assets/css/main.css')) }}">
 
-    <title>Blogy-Home</title>
+    <title>{{ __('Blogy-Home') }}</title>
 </head>
 
 <body>
@@ -47,11 +47,11 @@
                 <!-- Menu Starts Here -->
                 <div class="main-menu d-none d-lg-flex">
                     <ul class="main-menu-items list-unstyled">
-                        <li><a href="/" class="main-menu-item active-item">Home</a></li>
-                        
+                        <li><a href="/" class="main-menu-item active-item">{{ __('Home') }}</a></li>
+
                         <!-- Show Featured Category start -->
                         @foreach ($featuredCategories as $category)
-                            <li><a href="#">{{ $category->name }}</a></li>
+                            <li><a href="{{ url('/categories/'.$category->slug) }}">{{ $category->name }}</a></li>
                         @endforeach
                         <!-- Show Featured Category end -->
 
@@ -62,10 +62,10 @@
                                     {{-- <li><a href="{{ url('/home') }}" class="main-menu-item">Dashboard</a></li> --}}
                                     <x-app-layout></x-app-layout>
                                 @else
-                                    <li><a href="{{ route('login') }}" class="main-menu-item">Log in</a></li>
+                                    <li><a href="{{ route('login') }}" class="main-menu-item">{{ __('Log in') }}</a></li>
 
                                     @if (Route::has('register'))
-                                        <li><a href="{{ route('register') }}" class="main-menu-item">Register</a></li>
+                                        <li><a href="{{ route('register') }}" class="main-menu-item">{{ __('Register') }}</a></li>
                                     @endif
                                 @endauth
                             {{-- </div> --}}

@@ -47,11 +47,11 @@
                 </div>
                 <div class="col-lg-1 col-md-2">
                     <div class="footer-wizard">
-                        <h6>Category</h6>
+                        <h6>{{ __('Category') }}</h6>
                         <ul class="list-unstyled">
                             <!-- Show Featured Category start -->
                             @foreach ($featuredCategories as $category)
-                                <li><a href="#">{{ $category->name }}</a></li>
+                                <li><a href="{{ url('/categories/'.$category->slug) }}">{{ $category->name }}</a></li>
                             @endforeach
                             <!-- Show Featured Category end -->
                         </ul>
@@ -59,30 +59,30 @@
                 </div>
                 <div class="col-lg-2 offset-lg-1 col-md-3">
                     <div class="footer-wizard">
-                        <h6>Follow us</h6>
+                        <h6>{{ __('Follow us') }}</h6>
                         <ul class="list-unstyled">
-                            <li><a href="#">Facebook</a></li>
-                            <li><a href="#">Twitter</a></li>
-                            <li><a href="#">Instagram</a></li>
-                            <li><a href="#">Youtube</a></li>
+                            <li><a href="#">{{ __('Facebook') }}</a></li>
+                            <li><a href="#">{{ __('Twitter') }}</a></li>
+                            <li><a href="#">{{ __('Instagram') }}</a></li>
+                            <li><a href="#">{{ __('Youtube') }}</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="footer-wizard">
-                        <h6>Newsletter</h6>
+                        <h6>{{ __('Newsletter') }}</h6>
                         <form action="#">
                             <div class="footer-wizard-form">
                                 <input type="email" placeholder="Enter Email">
-                                <button class="btn btn-default btn-default-sm">Subscribe</button>
+                                <button class="btn btn-default btn-default-sm">{{ __('Subscribe') }}</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
             <div class="copy-right">
-                <p>@ 2021 - Blogy</p>
-                <p>Designed & Develop by <a href="https://zakirsoft.com/">Zakirsoft</a></p>
+                <p>&copy; {{ date('Y') }} - {{ __('Blogy') }}</p>
+                <p>{{ __('Designed & Develop by') }} <a href="https://zakirsoft.com/">{{ __('Zakirsoft') }}</a></p>
             </div>
         </div>
     </footer>
