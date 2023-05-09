@@ -44,11 +44,32 @@ class FrontendController extends Controller
         $post = $category->posts()->where('slug', $post_slug)->first();
 
 
-        // Get related posts
-        $relatedPosts = $post->category->posts()->where('id', '!=', $post->id)->take(2)->get();
+        // Get related posts from the same category
+        $relatedPosts = $post->category->posts()
+            ->where('id', '!=', $post->id)
+            ->take(2)
+            ->get();
+
+        // If there are no related posts from the same category, get two posts from any other category
+        if ($relatedPosts->count() < 1) {
+            $relatedPostsFromOtherCategories = Post::where('category_id', '!=', $post->category_id)
+                ->take(2 - $relatedPosts->count())
+                ->get();
+            $relatedPosts = $relatedPosts->merge($relatedPostsFromOtherCategories);
+        }
+
+        
+        // Determine the link URL for the "View All" link
+        $viewAllLinkUrl = '';
+        if ($post->category->posts()->count() > 1) {
+            $viewAllLinkUrl = route('categories.category', $post->category->slug);
+        } else {
+            $viewAllLinkUrl = route('posts.index');
+        }
+
 
         // return view('frontend.post-view', compact('post'));
-        return view('frontend.posts.post-details', compact('post', 'relatedPosts', 'category', 'featuredCategories'));
+        return view('frontend.posts.post-details', compact('post', 'viewAllLinkUrl', 'relatedPosts', 'category', 'featuredCategories'));
     }
     // Post Details page for Showing post details together category_slug and post_slug End
 
@@ -104,10 +125,33 @@ class FrontendController extends Controller
 
 
         // Get related posts
-        $relatedPosts = $post->category->posts()->where('id', '!=', $post->id)->take(2)->get();
+        // $relatedPosts = $post->category->posts()->where('id', '!=', $post->id)->take(2)->get();
+
+        // Get related posts from the same category
+        $relatedPosts = $post->category->posts()
+            ->where('id', '!=', $post->id)
+            ->take(2)
+            ->get();
+
+        // If there are no related posts from the same category, get two posts from any other category
+        if ($relatedPosts->count() < 1) {
+            $relatedPostsFromOtherCategories = Post::where('category_id', '!=', $post->category_id)
+                ->take(2 - $relatedPosts->count())
+                ->get();
+            $relatedPosts = $relatedPosts->merge($relatedPostsFromOtherCategories);
+        }
 
 
-        return view('frontend.posts.post-details', compact('post', 'relatedPosts', 'featuredCategories'));
+        // Determine the link URL for the "View All" link
+        $viewAllLinkUrl = '';
+        if ($post->category->posts()->count() > 1) {
+            $viewAllLinkUrl = route('categories.category', $post->category->slug);
+        } else {
+            $viewAllLinkUrl = route('posts.index');
+        }
+
+
+        return view('frontend.posts.post-details', compact('post', 'viewAllLinkUrl', 'relatedPosts', 'featuredCategories'));
     }
     // Post Details page End
 

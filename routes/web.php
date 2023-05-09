@@ -59,14 +59,14 @@ Route::get('/', [FrontendController::class, 'featuredCategory']);
 Route::get('/', [FrontendController::class, 'latestPost']);
 
 // Only Posts Page
-Route::get('/posts', [FrontendController::class, 'allPosts']);
+Route::get('/posts', [FrontendController::class, 'allPosts'])->name('posts.index');
 Route::get('/posts/{post_slug}', [FrontendController::class, 'postDetails']);
 // Only Posts Page
 
 
 // For Category, Categories posts
-Route::get('/categories', [FrontendController::class, 'index']);
-Route::get('/categories/{category_slug}', [FrontendController::class, 'category']);
+Route::get('/categories', [FrontendController::class, 'index'])->name('categories.index');
+Route::get('/categories/{category_slug}', [FrontendController::class, 'category'])->name('categories.category');
 // Route::get('/categories/{category_slug}/{post_slug}', [FrontendController::class, 'post']);
 Route::get('/categories/{category_slug}/{post_slug}', [FrontendController::class, 'post']);
 

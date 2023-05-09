@@ -12,7 +12,7 @@
                 <div class="col-lg-10">
                     <div class="blog-intro-area">
 
-                        <span class="has-line fs-6"><a href="#">{{ $post->category->name }}</a></span>
+                        <span class="has-line fs-6"><a href="{{ url('/categories/'.$post->category->slug) }}">{{ $post->category->name }}</a></span>
                         <h3>{{ $post->title }}</h3>
                         <div class="blog-intro-area-bottom">
                             <div class="intro-start">
@@ -206,7 +206,7 @@
         <div class="container">
             <div class="blog-item-feature-heading">
                 <h4>{{ __('You May Also Like') }}</h4>
-                <a href="#">{{ __('View All') }}</a>
+                <a href="{{ $viewAllLinkUrl }}">{{ __('View All') }}</a>
             </div>
             <div class="row">
 
@@ -235,6 +235,9 @@
                             </div>
                         </div>
                     @endforeach
+
+                @else
+                    <h6>No posts to show!</h6>
                 @endif
 
             </div>
