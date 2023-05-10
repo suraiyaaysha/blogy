@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
+use App\Models\Category;
+use Illuminate\Support\Facades\DB;
+
 class ProfileController extends Controller
 {
     /**
@@ -16,8 +19,12 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+
+        $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+
         return view('profile.edit', [
             'user' => $request->user(),
+            'categories' => $featuredCategories, 'featuredCategories' => $featuredCategories
         ]);
     }
 
