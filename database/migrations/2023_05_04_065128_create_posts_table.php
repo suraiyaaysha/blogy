@@ -27,6 +27,19 @@ return new class extends Migration
 
             $table->timestamps();
         });
+
+
+        Schema::create('comments', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('post_id')->unsigned();
+            $table->integer('parent_id')->unsigned()->nullable();
+            $table->text('body');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+
     }
 
     /**
@@ -35,5 +48,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('posts');
+        Schema::dropIfExists('comments');
     }
 };

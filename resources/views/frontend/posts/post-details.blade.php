@@ -248,73 +248,45 @@
     <!-- Comments Area Starts Here -->
     <section class="comments-area">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <h5>Leave a Comment</h5>
-                    <form action="#">
-                        <div class="row g-3">
-                            <div class="col-lg-6">
-                              <input type="text" class="form-control" placeholder="Your name">
-                            </div>
-                            <div class="col-lg-6">
-                              <input type="email" class="form-control" placeholder="Your email">
-                            </div>
-                        </div>
-                        <textarea class="form-control" placeholder="Your Comments"></textarea>
-                        <div class="d-flex justify-content-lg-end">
-                            <button type="submit" class="btn-default">Post Commnent</button>
-                        </div>
-                    </form>
-                    <div class="comments-area-content">
-                        <h5>Comments <span>(02)</span></h5>
-                        <div class="comments">
-                            <div class="comments-owner">
-                                <div class="comments-owner-image">
-                                    <a href="#" class="d-block">
-                                        <img src="dist/images/cowner.png" alt="Image">
-                                    </a>
-                                </div>
-                                <div class="comments-owner-text">
-                                    <p><a href="#">Kevin</a></p>
-                                    <span>2 hours ago</span>
-                                </div>
-                            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            {{-- <h3 class="text-center text-success">Nicesnippets.com</h3>
+                            <br />
+                            <h2>{{ $post->title }}</h2>
                             <p>
-                                Donec pellentesque luctus tortor finibus blandit. Fusce tincidunt lectus augue, quis commodo justo tincidunt eget. Praesent at elit diam.
+                                {{ $post->body }}
                             </p>
-                        </div>
-                        <div class="comments">
-                            <div class="comments-owner">
-                                <div class="comments-owner-image">
-                                    <a href="#" class="d-block">
-                                        <img src="dist/images/cowner.png" alt="Image">
-                                    </a>
+                            <hr /> --}}
+                            <h4>Display Comments</h4>
+
+                            @include('frontend.posts.commentsDisplay', [
+                                'comments' => $post->comments,
+                                'post_id' => $post->id,
+                            ])
+
+                            <hr />
+                            <h4 class="mt-5">Add comment</h4>
+                            <form method="post" action="{{ route('comments.store') }}">
+                                @csrf
+                                <div class="form-group">
+                                    <textarea class="form-control" name="body"></textarea>
+                                    <input type="hidden" name="post_id" value="{{ $post->id }}">
                                 </div>
-                                <div class="comments-owner-text">
-                                    <p><a href="#">Marry</a></p>
-                                    <span>2 hours ago</span>
+                                <div class="form-group">
+                                    {{-- <input type="submit" class="btn btn-success bg-success {{ Auth::check() ? '' : 'disabled' }}" value="Add Comment"> --}}
+                                    {{-- <input type="submit" class="btn btn-success bg-success {{ Auth::check() ? '' : 'disabled' }}" value="Add Comment"> --}}
+                                    @guest
+                                        <a href="{{ route('login') }}" class="btn btn-success bg-success">Login</a>
+                                    @endguest
+                                    @auth
+                                        <input type="submit" class="btn btn-success bg-success" value="Add Comment">
+                                    @endauth
                                 </div>
-                            </div>
-                            <p>
-                                Nulla varius enim eu dui venenatis, nec lacinia urna gravida. Vivamus euismod tincidunt eros at bibendum. Proin lacus dolor, posuere et posuere eu, congue posuere lectus. Suspendisse id lorem egestas, volutpat lacus a, auctor justo. Cras ac elementum arcu, eget ornare massa. Donec eget urna magna. Fusce vestibulum arcu eu libero ullamcorper, nec semper dolor bibendum. Mauris laoreet justo massa, vitae venenatis augue dignissim ac.
-                            </p>
+                            </form>
                         </div>
                     </div>
-                    <h5>Write a Replay</h5>
-                    <form action="#">
-                        <div class="row g-3">
-                            <div class="col-lg-6">
-                              <input type="text" class="form-control" placeholder="Your name">
-                            </div>
-                            <div class="col-lg-6">
-                              <input type="email" class="form-control" placeholder="Your email">
-                            </div>
-                        </div>
-                        <textarea class="form-control" placeholder="Your Comments"></textarea>
-                        <div class="d-flex justify-content-lg-end">
-                            <button type="submit" class="btn-default">Post Commnent</button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

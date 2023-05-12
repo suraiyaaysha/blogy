@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Str;
@@ -154,4 +155,21 @@ class PostController extends Controller
         Post::findOrFail($post_id)->delete();
         return redirect('admin/posts')->with('message', 'Post Deleted successfully');
     }
+
+    // Comment method
+    public function storeComment(Request $request, Post $post)
+    {
+        $validatedData = $request->validate([
+            'body' => 'required'
+        ]);
+
+        $comment = new Comment;
+        $comment->body = $validatedData['body'];
+        $comment->user_id = auth()->user()->id;
+        $post->comments()->save($comment);
+
+        return back();
+    }
+
+
 }

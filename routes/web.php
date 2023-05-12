@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PostController;
 
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +61,8 @@ Route::get('/', [FrontendController::class, 'latestPost']);
 
 // Only Posts Page
 Route::get('/posts', [FrontendController::class, 'allPosts'])->name('posts.index');
-Route::get('/posts/{post_slug}', [FrontendController::class, 'postDetails']);
+// Route::get('/posts/{post_slug}', [FrontendController::class, 'postDetails']);
+Route::get('/posts/{post_slug}', [FrontendController::class, 'postDetails'])->name('posts.postDetails');
 // Only Posts Page
 
 
@@ -69,6 +71,27 @@ Route::get('/categories', [FrontendController::class, 'index'])->name('categorie
 Route::get('/categories/{category_slug}', [FrontendController::class, 'category'])->name('categories.category');
 // Route::get('/categories/{category_slug}/{post_slug}', [FrontendController::class, 'post']);
 Route::get('/categories/{category_slug}/{post_slug}', [FrontendController::class, 'post']);
+
+
+
+
+// Comment App url
+// Route::get('/posts', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
+// Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create');
+// Route::post('posts/store', [App\Http\Controllers\PostController::class, 'store'])->name('posts.store');
+
+// Route::get('posts/show/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
+// Route::post('comments/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
+
+
+
+// Route::get('posts/show/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
+Route::post('comments/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
+// Comment App url
+
+
+
+
 
 /*
 |-----------------------------

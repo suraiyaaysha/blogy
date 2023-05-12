@@ -1784,4 +1784,11 @@ section.details-banner {
     padding: 150px 0px 150px 0px;
 }
 
+/* Comment Reply CSS Start */
+.display-comment {
+    border: 1px solid #d7d7d7;
+    padding: 15px;
+}
+/* Comment Reply CSS End */
+
 /* Extra CSS for Dynamic Start */

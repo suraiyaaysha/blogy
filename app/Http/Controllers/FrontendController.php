@@ -58,7 +58,7 @@ class FrontendController extends Controller
             $relatedPosts = $relatedPosts->merge($relatedPostsFromOtherCategories);
         }
 
-        
+
         // Determine the link URL for the "View All" link
         $viewAllLinkUrl = '';
         if ($post->category->posts()->count() > 1) {
@@ -123,6 +123,12 @@ class FrontendController extends Controller
         // $category = Category::where('slug', $category_slug)->first();
         $post = Post::where('slug', $post_slug)->first();
 
+        // $comments = $post->comments()->with('user')->get();
+            $category = null;
+
+            if ($post->category) {
+                $category = $post->category;
+            }
 
         // Get related posts
         // $relatedPosts = $post->category->posts()->where('id', '!=', $post->id)->take(2)->get();
@@ -150,8 +156,7 @@ class FrontendController extends Controller
             $viewAllLinkUrl = route('posts.index');
         }
 
-
-        return view('frontend.posts.post-details', compact('post', 'viewAllLinkUrl', 'relatedPosts', 'featuredCategories'));
+        return view('frontend.posts.post-details', compact('post', 'category', 'viewAllLinkUrl', 'relatedPosts', 'featuredCategories'));
     }
     // Post Details page End
 
