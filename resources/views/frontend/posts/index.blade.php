@@ -76,16 +76,9 @@
                     <div class="all-tags">
                         <h6>All Tags</h6>
                         <ul class="list-unstyled list-inline all-tags-list">
-                            <li class="list-inline-item"><a href="#">Journey</a></li>
-                            <li class="list-inline-item"><a href="#">Life</a></li>
-                            <li class="list-inline-item"><a href="#">Food</a></li>
-                            <li class="list-inline-item"><a href="#">Fashion</a></li>
-                            <li class="list-inline-item"><a href="#">UI</a></li>
-                        </ul>
-                        <ul class="list-unstyled list-inline all-tags-list mb-0">
-                            <li class="list-inline-item"><a href="#">Interior</a></li>
-                            <li class="list-inline-item"><a href="#">Minimalistic</a></li>
-                            <li class="list-inline-item"><a href="#">Design</a></li>
+                            @foreach ($tags as $tag)
+                                <li class="list-inline-item mb-2"><a href="{{ url('/tags/'.$tag->slug) }}">{{ $tag->name }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

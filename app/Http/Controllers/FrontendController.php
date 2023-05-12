@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 
 use App\Models\Post;
+use App\Models\Tag;
 
 use Illuminate\Support\Facades\DB;
 
@@ -159,5 +160,29 @@ class FrontendController extends Controller
         return view('frontend.posts.post-details', compact('post', 'category', 'viewAllLinkUrl', 'relatedPosts', 'featuredCategories'));
     }
     // Post Details page End
+
+    // Show All Posts to Posts Page Start
+    public function allTags() {
+
+        $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        $allPosts = Post::latest()->paginate(4);
+
+        $tags = Tag::all();
+        return view('frontend.posts.index', compact('tags', 'featuredCategories', 'allPosts'));
+    }
+    // Show All Posts to Posts Page End
+
+    public function showTag($slug){
+        $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+
+        // To retrive tags post, first find tag, then posts under this tag
+        $tag = Tag::where('slug', $slug)->first();
+        $posts = $tag->posts()->orderBy('created_at', 'desc')->paginate(5);
+
+        // return ($posts);
+
+
+        return view('frontend.tag.index', compact('featuredCategories', 'posts', 'tag'));
+    }
 
 }

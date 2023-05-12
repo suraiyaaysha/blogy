@@ -43,8 +43,8 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ url('admin/posts') }}" method="POST" enctype="multipart/form-data">
-                        {{-- <form action="{{ '/admin/category/store' }}" method="POST"> --}}
+
+                        <form action="{{ url('admin/posts/') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
 
@@ -97,10 +97,25 @@
 
                                 </div>
 
+                                <div class="form-group">
+                                    <label>{{ __('Tags') }}</label>
+                                    <select name="tags[]" class="block w-full mt-1" multiple>
+                                        @foreach ($tags as $tag )
+                                            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
                                 {{-- <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                                 </div> --}}
+
+                                <div class="form-group">
+                                    <label class="d-none">Views</label>
+                                    <input type="hidden" class="form-control" name="views" value="0">
+                                </div>
+
                             </div>
                             <!-- /.card-body -->
 

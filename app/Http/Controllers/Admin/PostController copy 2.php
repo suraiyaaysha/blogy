@@ -7,7 +7,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Str;
 
@@ -19,7 +19,6 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with(['tags'])->latest()->paginate(5);
-        // $posts = Post::latest()->paginate(5);
         return view('admin.post.index', compact('posts'))->with(
             'i',
             (request()->input('page', 1) - 1) *5
@@ -52,26 +51,31 @@ class PostController extends Controller
             'reading_duration' => 'required',
         ]);
 
-        $category = Category::findOrFail($request->category_id);
+    // Different way to save start
+        // $category = Category::findOrFail($request->category_id);
 
-        // $post = Post::findOrFail($request->post_id);
+        // $post = new Post;
+        // $post->title = $request->title;
+        // $post->slug = Str::slug($request->title);
+        // $post->details = $request->details;
+
+        // $category->posts()->save($post);
+
+    // Different way to save end
+
+        $category = Category::findOrFail($request->category_id);
+        $post = Post::findOrFail($request->post_id);
 
         $file = $request->thumbnail;
         $url = $file->move('uploads/blog-img' , $file->hashName());
 
-
-        // Retrieve the authenticated user
-        $user = Auth::user();
-
-        // Create the post
-        $post = Post::create([
-            'category_id' => $request->category_id,
-            'user_id' => $user->id,
+        //  $post = Auth::user()->posts()->create([
+         $category->posts()->create([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
-            'thumbnail' => $url,
             'details' => $request->details,
             'reading_duration' => $request->reading_duration,
+            'thumbnail' => $url,
         ]);
 
         // For adding tags
@@ -82,34 +86,19 @@ class PostController extends Controller
         $category->posts()->save($post);
 
         // return back()->withSuccess('Category created successfully');
-         return redirect('admin/posts')->with('message', 'Post added successfully');
+        return redirect('admin/posts')->with('message', 'Post created successfully');
 
     }
 
     /**
      * Display the specified resource.
      */
-    // public function show(int $post)
-    // public function show(Post $post)
-    // {
-    //     $categories =Category::all();
-
-    //     // To add views field, which posts viewed more
-    //     $post->increment('views');
-
-    //     $post = Post::findOrFail($post);
-    //     return view('admin.post.show', compact('categories', 'post'));
-    // }
-    public function show($id)
+    public function show(int $post)
     {
-        $post = Post::findOrFail($id);
+        $categories =Category::all();
 
-        $categories = Category::all();
-
-        // To add views field, which posts viewed more
-        $post->increment('views');
-
-        return view('admin.post.show', compact('post', 'categories'));
+        $post = Post::findOrFail($post);
+        return view('admin.post.show', compact('categories', 'post'));
     }
 
     /**
@@ -129,6 +118,17 @@ class PostController extends Controller
      */
     public function update(Request $request, $post_id)
     {
+    // Different way to Update start
+        // $post = Category::findOrFail($request->category_id)->posts()->where('id', $post_id)->first();
+
+        // $post->title = $request->title;
+        // $post->slug = Str::slug($request->title);
+        // $post->details = $request->details;
+
+        // $post->update();
+
+    // Different way to Update end
+
         // validate data
         $request->validate([
             'title' => 'required|max:255',
@@ -146,18 +146,12 @@ class PostController extends Controller
             $url = $category->posts()->find($post_id)->thumbnail;
         }
 
-        // Retrieve the authenticated user
-        $user = Auth::user();
-
-        // Update the post
-        $post = Post::where('id', $post_id)->update([
-            'category_id' => $request->category_id,
-            'user_id' => $user->id,
+        $category->posts()->where('id', $post_id)->update([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
-            'thumbnail' => $url,
             'details' => $request->details,
             'reading_duration' => $request->reading_duration,
+            'thumbnail' => $url,
         ]);
 
         return redirect('admin/posts')->with('message', 'Post Updated successfully');

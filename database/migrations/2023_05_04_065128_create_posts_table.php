@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('thumbnail');
             $table->longText('details');
             $table->string('reading_duration');
-            $table->string('views');
+            $table->unsignedInteger('views')->default(0); // add this line to set a default value of 0
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

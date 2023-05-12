@@ -5,22 +5,30 @@
     <div class="content-header">
       <div class="container-fluid">
             <div class="row">
-                @if ($message = Session::get('success'))
+                {{-- @if ($message = Session::get('success'))
 
                     <div class="col-md-6 grid-margin">
                         <div class="alert alert-success badge-outline-success">
                             {{  $message  }}
                         </div>
                     </div>
+                @endif --}}
+
+                @if (session('message'))
+
+                    <div class="col-md-6 grid-margin">
+                        <div class="alert alert-success badge-outline-success">
+                            {{  session('message')  }}
+                        </div>
+                    </div>
                 @endif
             </div>
         <div class="row mb-2">
-          <div class="col-sm-12">
+          <div class="col-sm-8">
 
             <div>
-                <h1 class="m-0">Posts</h1>
-                {{-- <a href="{{ url('admin/posts/create') }}" class="btn btn-primary mr-2 float-right">Create New</a> --}}
-                <a href="{{ url('admin/post/create') }}" class="btn btn-primary mr-2 float-right">Create New</a>
+                <h1 class="m-0">Tags</h1>
+                <a href="{{ url('admin/tag/create') }}" class="btn btn-primary mr-2 float-right">Create New Tag</a>
             </div>
 
           </div><!-- /.col -->
@@ -34,54 +42,32 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <div class="card">
                         <div class="card-body p-0">
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
-                                        <th>Post title</th>
-                                        <th>Thumbnail</th>
-                                        <th>Category name</th>
-                                        <th>Details</th>
-                                        <th>{{ ('Tags') }}</th>
+                                        <th>Tag name</th>
+                                        <th>Tag Slug</th>
                                         <th style="width: 40px">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($posts as $post)
+                                    @foreach ($tags as $tag)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $post->title }}</td>
-                                            <td>
-                                                <div>
-                                                    <img src="{{ asset($post->thumbnail) }}" alt="Post thumbnail" class="post-img-h">
-                                                </div>
-                                            </td>
-                                            <td>{{ $post->category->name }}</td>
-                                            {{-- <td>{{ Str::limit($post->details, 50) }}</td> --}}
-
-                                            <td>{!! Str::limit($post->details, 50) !!}</td>
-
-                                            <td class="px-6 py-4">
-                                                @foreach ($post->tags as $tag)
-                                                {{ $tag->name }},
-                                                @endforeach
-                                            </td>
-
+                                            <td>{{ $tag->name }}</td>
+                                            <td>{{ $tag->slug }}</td>
                                             <td>
                                                 <div class="d-flex">
-                                                    <a href="{{ url('admin/posts/'.$post->id.'/show') }}" class="btn btn-primary mr-2 btn-mw">Show Details</a>
-                                                    <a href="{{ url('admin/posts/'.$post->id.'/edit') }}" class="btn btn-primary mr-2">Edit</a>
+                                                    <a href="/admin/tag/{{ $tag->id }}/edit" class="btn btn-primary mr-2">Edit</a>
 
-                                                    {{-- <a href="{{ url('admin/posts/'.$post->id.'/delete') }}" class="btn btn-danger mr-2">Delete</a> --}}
-
-                                                    <form action="{{ url('admin/posts/'.$post->id.'/delete') }}" method="POST" class="delete-form">
+                                                    <form action="/admin/tag/{{ $tag->id }}/delete" method="POST" class="delete-form">
                                                     @csrf
                                                     @method('DELETE')
                                                         <button type="submit" class="btn btn-danger bg-danger">Delete</button>
-
                                                     </form>
 
                                                 </div>
@@ -92,7 +78,7 @@
                             </table>
 
                             <div class="pagination-box float-right mt-3 mb-4 mr-4">
-                                {{ $posts->links() }}
+                                {{ $tags->links() }}
                             </div>
 
                         </div>

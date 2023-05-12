@@ -34,4 +34,8 @@ class Post extends Model
         return $this->hasMany(Comment::class)->whereNull('parent_id');
     }
 
+    public function tags() {
+        return $this->belongsToMany(Tag::class)->as('tags');
+    }
+
 }

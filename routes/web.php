@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\PostController;
 
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,7 +90,9 @@ Route::get('/categories/{category_slug}/{post_slug}', [FrontendController::class
 Route::post('comments/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
 // Comment App url
 
-
+// Tags Route
+Route::get('/posts', [FrontendController::class, 'allTags'])->name('posts.index');
+Route::get('/tags/{slug}', [FrontendController::class, 'showTag'])->name('tags.index');
 
 
 
@@ -138,14 +141,27 @@ Route::prefix('admin')->group(function () {
         // Blog Route
         Route::controller(App\Http\Controllers\Admin\PostController::class)->group(function () {
             Route::get('posts', 'index');
-            Route::get('posts/create', 'create');
+            Route::get('post/create', 'create');
+            // Route::post('posts', 'store');
             Route::post('posts', 'store');
             Route::get('posts/{post}/edit', 'edit');
             Route::put('posts/{post}', 'update');
             // Route::get('posts/{post_id}/delete', 'destroy');  for a tag delete
             Route::delete('posts/{post_id}/delete', 'destroy');
             Route::get('posts/{post}/show', 'show');
+            Route::get('posts/{id}/show', 'show');
+            // Route::get('/admin/posts/{post}/show', [PostController::class, 'show'])->name('admin.post.show');
+
         });
+
+        // Tags Route
+        Route::get('tag', [TagController::class, 'index'])->name('tag.index');
+        Route::get('tag/create', [TagController::class, 'create'])->name('tag.create');
+        Route::post('tag', [TagController::class, 'store'])->name('tag.store');
+        Route::get('tag/{id}/edit', [TagController::class, 'edit'])->name('tag.edit');
+        Route::put('tag/{id}/update', [TagController::class, 'update'])->name('tag.update');
+        Route::delete('tag/{id}/delete', [TagController::class, 'destroy'])->name('tag.destroy');
+
     });
 
 });
