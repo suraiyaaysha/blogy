@@ -18,9 +18,9 @@
           <div class="col-sm-12">
 
             <div>
-                <h1 class="m-0">Posts</h1>
+                <h1 class="m-0">{{ __('Posts') }}</h1>
                 {{-- <a href="{{ url('admin/posts/create') }}" class="btn btn-primary mr-2 float-right">Create New</a> --}}
-                <a href="{{ url('admin/post/create') }}" class="btn btn-primary mr-2 float-right">Create New</a>
+                <a href="{{ url('admin/post/create') }}" class="btn btn-primary mr-2 float-right">{{ __('Create New') }}</a>
             </div>
 
           </div><!-- /.col -->
@@ -41,13 +41,13 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
-                                        <th>Post title</th>
-                                        <th>Thumbnail</th>
-                                        <th>Category name</th>
-                                        <th>Details</th>
-                                        <th>Featured or Not</th>
+                                        <th>{{ __('Post title') }}</th>
+                                        <th>T{{ __('humbnail') }}</th>
+                                        <th>{{ __('Category name') }}</th>
+                                        <th>{{ __('Details') }}</th>
+                                        <th>{{ __('Featured or Not') }}</th>
                                         <th>{{ ('Tags') }}</th>
-                                        <th style="width: 40px">Action</th>
+                                        <th style="width: 40px">{{ __('Action') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -67,9 +67,9 @@
 
                                             <td>
                                                 @if ($post->is_featured)
-                                                    <p class="badge badge-success">Featured</p>
+                                                    <p class="badge badge-success">{{ __('Featured') }}</p>
                                                 @else
-                                                    <p class="badge badge-light">Not Featured</p>
+                                                    <p class="badge badge-light">{{ __('Not Featured') }}</p>
                                                 @endif
                                             </td>
 
@@ -81,15 +81,16 @@
 
                                             <td>
                                                 <div class="d-flex">
-                                                    <a href="{{ url('admin/posts/'.$post->id.'/show') }}" class="btn btn-primary mr-2 btn-mw">Show Details</a>
-                                                    <a href="{{ url('admin/posts/'.$post->id.'/edit') }}" class="btn btn-primary mr-2">Edit</a>
+                                                    <a href="{{ url('admin/posts/'.$post->id.'/show') }}" class="btn btn-primary mr-2 btn-mw">{{ __('Show Details') }}</a>
+                                                    {{-- <a href="{{ url('admin/posts/'.$post->id.'/edit') }}" class="btn btn-primary mr-2">Edit</a> --}}
+                                                    <a href="{{ url('admin/posts/'.$post->id.'/edit') }}" class="btn btn-primary mr-2">{{ __('Edit') }}</a>
 
                                                     {{-- <a href="{{ url('admin/posts/'.$post->id.'/delete') }}" class="btn btn-danger mr-2">Delete</a> --}}
 
                                                     <form action="{{ url('admin/posts/'.$post->id.'/delete') }}" method="POST" class="delete-form">
                                                     @csrf
                                                     @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger bg-danger">Delete</button>
+                                                        <button type="submit" class="btn btn-danger bg-danger">{{ __('Delete') }}</button>
 
                                                     </form>
 

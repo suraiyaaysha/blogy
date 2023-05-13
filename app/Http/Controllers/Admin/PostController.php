@@ -90,17 +90,6 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    // public function show(int $post)
-    // public function show(Post $post)
-    // {
-    //     $categories =Category::all();
-
-    //     // To add views field, which posts viewed more
-    //     $post->increment('views');
-
-    //     $post = Post::findOrFail($post);
-    //     return view('admin.post.show', compact('categories', 'post'));
-    // }
     public function show($id)
     {
         $post = Post::findOrFail($id);
@@ -117,12 +106,19 @@ class PostController extends Controller
      * Show the form for editing the specified resource.
      */
     // public function edit(Post $post)
-    public function edit(int $post)
+    public function edit(int $post, Request $request)
     {
         $categories =Category::all();
 
         $post = Post::findOrFail($post);
-        return view('admin.post.edit', compact('categories', 'post'));
+
+        // Get the tags that were previously selected for the item
+        $selectedTags = $post->tags->pluck('id')->toArray();
+        // Get all the available tags
+        $tags = Tag::all();
+
+        // Pass the data to the view
+        return view('admin.post.edit', compact('categories', 'post', 'tags', 'selectedTags'));
     }
 
     /**
@@ -151,7 +147,7 @@ class PostController extends Controller
         $user = Auth::user();
 
         // Update the post
-        $post = Post::where('id', $post_id)->update([
+        $post = Post::with(['tags'])->where('id', $post_id)->update([
             'category_id' => $request->category_id,
             'user_id' => $user->id,
             'title' => $request->title,
@@ -159,6 +155,7 @@ class PostController extends Controller
             'thumbnail' => $url,
             'details' => $request->details,
             'reading_duration' => $request->reading_duration,
+            'is_featured' => $request->has('is_featured'),
         ]);
 
         return redirect('admin/posts')->with('message', 'Post Updated successfully');

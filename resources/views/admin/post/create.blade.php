@@ -17,8 +17,7 @@
                     </div>
                 @endif
             </div>
-
-
+            
             {{-- <h1 class="m-0">Create ategories</h1> --}}
 
             <a href="{{ url('admin/posts') }}" class="btn btn-primary mr-2 float-right">Go Post List</a>
