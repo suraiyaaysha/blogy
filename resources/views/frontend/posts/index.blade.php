@@ -57,27 +57,18 @@
 
                         <h6>{{ __('Featured Category') }}</h6>
 
-
                         <!-- Show Featured Category start -->
                         @foreach ($featuredCategories as $category)
                             <div class="featured-category-item"
-                                style="background-image: url(frontend/assets/images/category-01.jpg);">
-                                <a href="#">{{ $category->name }}</a>
+                                style="background-image: url({{ asset(url($post->thumbnail)) }});">
+                                <a href="{{ url('/categories/' . $category->slug) }}" class="{{ Request::is('categories/'.$category->slug) ? 'active' : '' }}">{{ $category->name }}</a>
                             </div>
                         @endforeach
                         <!-- Show Featured Category end -->
 
-                        {{-- <div class="featured-category-item"
-                            style="background-image: url(frontend/assets/images/category-02.jpg);">
-                            <a href="#">Food</a>
-                        </div>
-                        <div class="featured-category-item mb-0"
-                            style="background-image: url(frontend/assets/images/category-03.jpg);">
-                            <a href="#">Lifestyle</a>
-                        </div> --}}
                     </div>
                     <div class="all-tags">
-                        <h6>All Tags</h6>
+                        <h6>{{ __('All Tags') }}</h6>
                         <ul class="list-unstyled list-inline all-tags-list">
                             @foreach ($tags as $tag)
                                 <li class="list-inline-item mb-2"><a

@@ -213,7 +213,7 @@ Version      : 1.0
   transition: 0.3s all linear;
 }
 
-.featured-category-item a:hover {
+.featured-category-item a:hover, .featured-category-item a.active {
   background-color: #FB743E;
   color: white;
 }

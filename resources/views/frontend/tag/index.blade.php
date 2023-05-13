@@ -43,7 +43,7 @@
                                         </div>
 
                                         <div class="blog-item-info-release">
-                                            <span>{{ $post->created_at->format('F j, Y') }}</span> <span class="dot"></span>
+                                            <span>{{ $post->updated_at->format('F j, Y') }}</span> <span class="dot"></span>
                                             <span>{{ $post->reading_duration }} {{ __('read') }}</span>
                                         </div>
                                         <a href="{{ url('/posts/'.$post->slug) }}" class="btn btn-link">{{ __('Read Article') }}
@@ -81,20 +81,12 @@
 
                         <!-- Show Featured Category start -->
                         @foreach ($featuredCategories as $category)
-                            <div class="featured-category-item" style="background-image: url(frontend/assets/images/category-01.jpg);">
-                                <a href="#">{{ $category->name }}</a>
+                            <div class="featured-category-item" style="background-image: url({{ asset(url($post->thumbnail)) }});">
+                                <a href="{{ url('/categories/' . $category->slug) }}" class="{{ Request::is('categories/'.$category->slug) ? 'active' : '' }}">{{ $category->name }}</a>
                             </div>
                         @endforeach
                         <!-- Show Featured Category end -->
 
-                        {{-- <div class="featured-category-item"
-                            style="background-image: url(frontend/assets/images/category-02.jpg);">
-                            <a href="#">Food</a>
-                        </div>
-                        <div class="featured-category-item mb-0"
-                            style="background-image: url(frontend/assets/images/category-03.jpg);">
-                            <a href="#">Lifestyle</a>
-                        </div> --}}
                     </div>
                     <div class="all-tags">
                         <h6>All Tags</h6>
