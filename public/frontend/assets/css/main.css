@@ -237,7 +237,7 @@ Version      : 1.0
   transition: 0.3s all linear;
 }
 
-.all-tags-list a:hover {
+.all-tags-list a:hover, .all-tags-list a.active {
   background-color: #FB743E;
   color: white;
 }
@@ -1790,5 +1790,20 @@ section.details-banner {
     padding: 15px;
 }
 /* Comment Reply CSS End */
+
+/* Tags */
+.post-tags {
+    margin-bottom: 12px;
+}
+.badge-frontend-tag {
+    display: inline-block;
+    padding: 6px 11px;
+    background: rgba(39, 35, 67, 0.05);
+    font-size: 13px;
+    color: #272343;
+    font-family: "Poppins", sans-serif;
+    margin: 0 5px 5px 0;
+}
+/* Tags */
 
 /* Extra CSS for Dynamic Start */

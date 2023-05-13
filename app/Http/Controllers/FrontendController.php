@@ -174,15 +174,13 @@ class FrontendController extends Controller
 
     public function showTag($slug){
         $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        $tags = Tag::all();
 
         // To retrive tags post, first find tag, then posts under this tag
         $tag = Tag::where('slug', $slug)->first();
         $posts = $tag->posts()->orderBy('created_at', 'desc')->paginate(5);
 
-        // return ($posts);
-
-
-        return view('frontend.tag.index', compact('featuredCategories', 'posts', 'tag'));
+        return view('frontend.tag.index', compact('tags', 'featuredCategories', 'posts', 'tag'));
     }
 
 }
