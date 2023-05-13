@@ -197,7 +197,7 @@
             </div>
             <div class="row">
 
-                {{-- @foreach ($featuredPost as $post)
+                @foreach ($featuredPosts as $post)
                     <div class="col-lg-6 col-md-6 mt-4">
                         <div class="blog-item">
                             <div class="blog-item-image">
@@ -223,7 +223,7 @@
                             </div>
                         </div>
                     </div>
-                @endforeach --}}
+                @endforeach
 
             </div>
         </div>

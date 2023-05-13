@@ -13,10 +13,33 @@ use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
 {
-    // Show All Category
+    // To show Home Page
     public function index() {
+
+        // $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+
+        // $featuredCategories = Category::where('is_featured', true)->take(4)->get();
+        // $categories = Category::all();
+        // // Show all posts to home page
+        // $allPosts = Post::latest()->take(3)->get();
+
+        // // Show Top/Trendy Post based on post views
+        // $topPost = Post::orderBy('views', 'desc')->take(2)->get();
+        // $featuredPosts = Post::where('is_featured', true)->get();
+
+        // // Get the Recent 3 posts
+        // $recentPosts = Post::latest()->take(3)->get();
+
+        // return view('frontend.home', compact('featuredCategories', 'categories', 'recentPosts', 'topPost', 'allPosts', 'featuredPosts'));
+        return view('frontend.home');
+    }
+    // To show Home Page
+
+    // Show All Category
+    public function allCategory() {
         // get featured category
-        $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        // $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        $featuredCategories = Category::where('is_featured', true)->take(4)->get();
 
 
         $categories = Category::all();
@@ -27,7 +50,8 @@ class FrontendController extends Controller
     // Show Posts under a single category
     public function category($category_slug) {
 
-        $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        // $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        $featuredCategories = Category::where('is_featured', true)->take(4)->get();
 
 
         $category = Category::where('slug', $category_slug)->first();
@@ -38,7 +62,8 @@ class FrontendController extends Controller
     // Post Details page for Showing post details together category_slug and post_slug Start
     public function post(string $category_slug, string $post_slug) {
 
-        $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        // $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        $featuredCategories = Category::where('is_featured', true)->take(4)->get();
 
 
         $category = Category::where('slug', $category_slug)->first();
@@ -76,7 +101,8 @@ class FrontendController extends Controller
 
     // Show only is_featured category start
     public function featuredCategory(){
-        $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        // $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        $featuredCategories = Category::where('is_featured', true)->take(4)->get();
         return view('frontend.home', ['categories' => $featuredCategories, 'featuredCategories' => $featuredCategories]);
     }
     // Show only is_featured category end
@@ -84,7 +110,8 @@ class FrontendController extends Controller
     // Show Posts to Home Page Start
     public function latestPost() {
 
-        $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        // $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        $featuredCategories = Category::where('is_featured', true)->take(4)->get();
 
         // Show all posts to home page
         $allPosts = Post::latest()->take(3)->get();
@@ -103,9 +130,33 @@ class FrontendController extends Controller
     }
     // Show Posts to Home Page End
 
+    // Show Featured Post into Home Page
+    public function featuredPosts()
+    {
+        // $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        $featuredCategories = Category::where('is_featured', true)->take(4)->get();
+
+        // Get the Recent 3 posts
+        $recentPosts = Post::latest()->take(3)->get();
+
+        // Show Top/Trendy Post based on post views
+        $topPost = Post::orderBy('views', 'desc')->take(2)->get();
+
+        // Show all posts to home page
+        $allPosts = Post::latest()->take(3)->get();
+
+
+
+        $featuredPosts = Post::where('is_featured', true)->get();
+        //  $featuredPosts = Post::where('is_featured', true)->orderBy('created_at', 'desc')->get();
+        return view('frontend.home', compact('featuredPosts', 'featuredCategories', 'recentPosts', 'topPost', 'allPosts'));
+    }
+    // Show Featured Post into Home Page
+
     // Show All Posts to Posts Page Start
     public function allPosts() {
-        $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        // $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        $featuredCategories = Category::where('is_featured', true)->take(4)->get();
 
 
         $allPosts = Post::latest()->paginate(4);
@@ -116,7 +167,8 @@ class FrontendController extends Controller
     // Show Categories Post Details | Post Details page for showing Post Details via post_slug Start
     public function postDetails(string $post_slug) {
 
-        $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        // $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        $featuredCategories = Category::where('is_featured', true)->take(4)->get();
 
 
         // $category = Category::where('slug', $category_slug)->first();
@@ -162,7 +214,8 @@ class FrontendController extends Controller
     // Show All Posts to Posts Page Start
     public function allTags() {
 
-        $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        // $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        $featuredCategories = Category::where('is_featured', true)->take(4)->get();
         $allPosts = Post::latest()->paginate(4);
 
         $tags = Tag::all();
@@ -171,7 +224,8 @@ class FrontendController extends Controller
     // Show All Posts to Posts Page End
 
     public function showTag($slug){
-        $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        // $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
+        $featuredCategories = Category::where('is_featured', true)->take(4)->get();
         $tags = Tag::all();
 
         // To retrive tags post, first find tag, then posts under this tag
