@@ -12,23 +12,26 @@
                 <div class="col-lg-8">
                     <div class="row">
 
-                        @foreach ($allPosts as $post )
-
+                        @foreach ($allPosts as $post)
                             <div class="col-lg-6 col-md-6 mt-4">
                                 <div class="blog-item blog-item-sm">
                                     <div class="blog-item-image">
-                                        <a href="{{ url('/posts/'.$post->slug) }}">
+                                        <a href="{{ url('/posts/' . $post->slug) }}">
                                             <img src="{{ asset(url($post->thumbnail)) }}" alt="Image">
                                         </a>
                                     </div>
                                     <div class="blog-item-info">
                                         <span class="fs-6 has-line">{{ $post->category->name }}</span>
-                                        <h5><a href="{{ url('/posts/'.$post->slug) }}">{{ Str::limit($post->title, 15) }}</a></h5>
+                                        <h5><a
+                                                href="{{ url('/posts/' . $post->slug) }}">{{ Str::limit($post->title, 15) }}</a>
+                                        </h5>
                                         <div class="blog-item-info-release">
-                                            <span>{{ $post->updated_at->format('F j, Y') }}</span> <span class="dot"></span>
+                                            <span>{{ $post->created_at->format('F j, Y') }}</span> <span
+                                                class="dot"></span>
                                             <span>{{ $post->reading_duration }} {{ __('read') }}</span>
                                         </div>
-                                        <a href="{{ url('/posts/'.$post->slug) }}" class="btn btn-link">{{ __('Read Article') }}
+                                        <a href="{{ url('/posts/' . $post->slug) }}"
+                                            class="btn btn-link">{{ __('Read Article') }}
                                             <svg width="18" height="12" viewBox="0 0 18 12" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M12.5 1.5L17 6M17 6L12.5 10.5M17 6H1" stroke="currentColor"
@@ -39,7 +42,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         @endforeach
 
                         {{-- Pagination start --}}
@@ -58,7 +60,8 @@
 
                         <!-- Show Featured Category start -->
                         @foreach ($featuredCategories as $category)
-                            <div class="featured-category-item" style="background-image: url(frontend/assets/images/category-01.jpg);">
+                            <div class="featured-category-item"
+                                style="background-image: url(frontend/assets/images/category-01.jpg);">
                                 <a href="#">{{ $category->name }}</a>
                             </div>
                         @endforeach
@@ -77,7 +80,8 @@
                         <h6>All Tags</h6>
                         <ul class="list-unstyled list-inline all-tags-list">
                             @foreach ($tags as $tag)
-                                <li class="list-inline-item mb-2"><a href="{{ url('/tags/'.$tag->slug) }}">{{ $tag->name }}</a></li>
+                                <li class="list-inline-item mb-2"><a
+                                        href="{{ url('/tags/' . $tag->slug) }}">{{ $tag->name }}</a></li>
                             @endforeach
                         </ul>
                     </div>

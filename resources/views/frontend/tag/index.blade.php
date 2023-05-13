@@ -43,7 +43,7 @@
                                         </div>
 
                                         <div class="blog-item-info-release">
-                                            <span>{{ $post->updated_at->format('F j, Y') }}</span> <span class="dot"></span>
+                                            <span>{{ $post->created_at->format('F j, Y') }}</span> <span class="dot"></span>
                                             <span>{{ $post->reading_duration }} {{ __('read') }}</span>
                                         </div>
                                         <a href="{{ url('/posts/'.$post->slug) }}" class="btn btn-link">{{ __('Read Article') }}
