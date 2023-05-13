@@ -38,14 +38,16 @@ class CategoryController extends Controller
         // validate data
         $request->validate([
             'name' => 'required|max:255',
-            // 'slug' => 'required|max:255',
-            // 'label' => 'nullable|max:255',
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:15000',
         ]);
+
+        $file = $request->thumbnail;
+        $url = $file->move('uploads/blog-img' , $file->hashName());
 
         $category = new Category;
         $category->name = $request->name;
-        // $category->slug = $request->slug;
         $category->slug = Str::slug($request->name);
+        $category->thumbnail = $request->thumbnail;
         $category->is_featured = $request->has('is_featured');
 
         $category->save();
@@ -82,15 +84,21 @@ class CategoryController extends Controller
         // validate data
         $request->validate([
             'name' => 'required|max:255',
-            // 'slug' => 'required|max:255',
-            // 'label' => 'nullable|max:255',
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:15000',
         ]);
+
+        if ($request->hasFile('thumbnail')) {
+            $file = $request->thumbnail;
+            $url = $file->move('uploads/blog-img' , $file->hashName());
+        } else {
+            $url = $category->posts()->find($post_id)->thumbnail;
+        }
 
         $category = Category::where('id', $id)->first();
 
         $category->name = $request->name;
-        // $category->slug = $request->slug;
         $category->slug = Str::slug($request->name);
+        $category->thumbnail = $request->thumbnail;
         $category->is_featured = $request->has('is_featured');
 
         $category->save();

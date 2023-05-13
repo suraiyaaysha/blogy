@@ -51,6 +51,7 @@
                                         <th style="width: 10px">#</th>
                                         <th>Category name</th>
                                         <th>Category Slug</th>
+                                        <th>{{ __('Thumbnail') }}</th>
                                         <th>Category Label(Featured or Not Featured)</th>
                                         <th style="width: 40px">Action</th>
                                     </tr>
@@ -62,8 +63,11 @@
                                             <td>{{ $category->name }}</td>
                                             <td>{{ $category->slug }}</td>
                                             <td>
-                                                {{-- {{ $category->is_featured }} --}}
-                                                {{-- {{ $category->is_featured ? 'Featured' : 'Not Featured' }} --}}
+                                                <div>
+                                                    <img src="{{ asset($category->thumbnail) }}" alt="Category thumbnail" class="post-img-h">
+                                                </div>
+                                            </td>
+                                            <td>
                                                 @if ($category->is_featured)
                                                     <p class="badge badge-success">Featured</p>
                                                 @else

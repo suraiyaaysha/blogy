@@ -58,6 +58,16 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label>{{ __('Upload thumbnail') }}</label>
+                                    <input type="file" class="form-control" name="thumbnail" placeholder="Category thumbnail">
+
+                                    @if ($errors->has('thumbnail'))
+                                        <span class="text-danger">{{ $errors->first('thumbnail') }}</span>
+                                    @endif
+
+                                </div>
+
+                                <div class="form-group">
                                     <label>
                                         <input type="checkbox" name="is_featured" value="{{ $category->is_featured }}" {{ $category->is_featured ? 'checked' : '' }}>
                                         Is Featured

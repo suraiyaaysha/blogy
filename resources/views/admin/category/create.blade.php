@@ -40,7 +40,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ url('admin/category') }}" method="POST">
+                        <form action="{{ url('admin/category') }}" method="POST" enctype="multipart/form-data">
                         {{-- <form action="{{ '/admin/category/store' }}" method="POST"> --}}
                             @csrf
                             <div class="card-body">
@@ -50,6 +50,16 @@
 
                                     @if ($errors->has('name'))
                                         <span class="text-danger">{{ $errors->first('name') }}</span>
+                                    @endif
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Upload thumbnail</label>
+                                    <input type="file" class="form-control" name="thumbnail" placeholder="Category thumbnail">
+
+                                    @if ($errors->has('thumbnail'))
+                                        <span class="text-danger">{{ $errors->first('thumbnail') }}</span>
                                     @endif
 
                                 </div>

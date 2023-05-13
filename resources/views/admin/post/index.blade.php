@@ -42,11 +42,11 @@
                                     <tr>
                                         <th style="width: 10px">#</th>
                                         <th>{{ __('Post title') }}</th>
-                                        <th>T{{ __('humbnail') }}</th>
+                                        <th>{{ __('Thumbnail') }}</th>
                                         <th>{{ __('Category name') }}</th>
                                         <th>{{ __('Details') }}</th>
                                         <th>{{ __('Featured or Not') }}</th>
-                                        <th>{{ ('Tags') }}</th>
+                                        <th>{{ __('Tags') }}</th>
                                         <th style="width: 40px">{{ __('Action') }}</th>
                                     </tr>
                                 </thead>
