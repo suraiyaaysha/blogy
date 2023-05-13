@@ -45,6 +45,7 @@
                                         <th>Thumbnail</th>
                                         <th>Category name</th>
                                         <th>Details</th>
+                                        <th>Featured or Not</th>
                                         <th>{{ ('Tags') }}</th>
                                         <th style="width: 40px">Action</th>
                                     </tr>
@@ -63,6 +64,14 @@
                                             {{-- <td>{{ Str::limit($post->details, 50) }}</td> --}}
 
                                             <td>{!! Str::limit($post->details, 50) !!}</td>
+
+                                            <td>
+                                                @if ($post->is_featured)
+                                                    <p class="badge badge-success">Featured</p>
+                                                @else
+                                                    <p class="badge badge-light">Not Featured</p>
+                                                @endif
+                                            </td>
 
                                             <td class="px-6 py-4">
                                                 @foreach ($post->tags as $tag)

@@ -106,10 +106,12 @@
                                     </select>
                                 </div>
 
-                                {{-- <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                </div> --}}
+                                <div class="form-group mb-0">
+                                    <label>
+                                        <input type="checkbox" name="is_featured" value="0">
+                                        <span class="check-box-tex ml-2 d-inline-block">{{ ('Is Featured') }}</span>
+                                    </label>
+                                </div>
 
                                 <div class="form-group">
                                     <label class="d-none">Views</label>

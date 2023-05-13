@@ -36,6 +36,7 @@ class PostFactory extends Factory
             'thumbnail' => $this->faker->imageUrl(),
             'details' => $this->faker->paragraphs(3, true),
             'reading_duration' => $this->faker->randomNumber(2) . 'min',
+            'is_featured' => rand(0, 1), // random value of 0 or 1
             'views' => $this->faker->randomNumber(2)
         ];
     }

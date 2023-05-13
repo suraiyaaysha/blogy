@@ -21,7 +21,7 @@
 
             {{-- <h1 class="m-0">Create ategories</h1> --}}
 
-            <a href="{{ url('admin/posts') }}" class="btn btn-primary mr-2 float-right">Go Post List</a>
+            <a href="{{ url('admin/posts') }}" class="btn btn-primary mr-2 float-right">{{ (__'Go Post List') }}</a>
 
           </div><!-- /.col -->
 
@@ -39,7 +39,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Create Post</h3>
+                            <h3 class="card-title">{{ (__'Create Post') }}</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -50,7 +50,7 @@
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label>Select Category</label>
+                                    <label>{{ (__'Select Category') }}</label>
                                     <select name="category_id" class="form-control">
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}" {{ $post->category_id == $category->id ? 'selected':''}}>{{ $category->name }}</option>
@@ -59,7 +59,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Post Title</label>
+                                    <label>{{ (__'Post Title') }}</label>
                                     <input type="text" class="form-control" name="title" value="{{ old('title', $post->title) }}" placeholder="Post Title">
 
                                     @if ($errors->has('title'))
@@ -69,7 +69,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Upload thumbnail</label>
+                                    <label>{{ (__'Upload thumbnail') }}</label>
                                     <input type="file" class="form-control" name="thumbnail" placeholder="Post thumbnail">
 
                                     @if ($errors->has('thumbnail'))
@@ -79,7 +79,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Details</label>
+                                    <label>{{ (__'Details') }}</label>
                                     <textarea class="ckeditor form-control" name="details" id="" cols="20" rows="5" placeholder="Post details">{!! old('details', $post->details) !!}</textarea>
 
                                     @if ($errors->has('details'))
@@ -89,7 +89,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Reading Duration</label>
+                                    <label>{{ (__'Reading Duration') }}</label>
                                     <input type="text" class="form-control" name="reading_duration" value="{{ old('reading_duration', $post->reading_duration) }}" placeholder="Reading Duration">
 
                                     @if ($errors->has('reading_duration'))
@@ -107,15 +107,18 @@
                                     </select>
                                 </div> --}}
 
-                                {{-- <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                </div> --}}
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" name="is_featured" value="{{ $post->is_featured }}" {{ $post->is_featured ? 'checked' : '' }}>
+                                        {{ __('Is Featured') }}
+                                    </label>
+                                </div>
+
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary bg-primary">Update</button>
+                                <button type="submit" class="btn btn-primary bg-primary">{{ (__'Update') }}</button>
                             </div>
                         </form>
                     </div>

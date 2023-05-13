@@ -72,6 +72,7 @@ class PostController extends Controller
             'thumbnail' => $url,
             'details' => $request->details,
             'reading_duration' => $request->reading_duration,
+            'is_featured' => $request->has('is_featured'),
         ]);
 
         // For adding tags

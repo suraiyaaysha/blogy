@@ -18,10 +18,7 @@
                 @endif
             </div>
 
-
-            {{-- <h1 class="m-0">Create ategories</h1> --}}
-
-            <a href="{{ url('admin/category') }}" class="btn btn-primary mr-2 float-right">Go Category List</a>
+            <a href="{{ url('admin/category') }}" class="btn btn-primary mr-2 float-right">{{ __('Go Category List') }}</a>
 
           </div><!-- /.col -->
 
@@ -39,7 +36,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Create categories</h3>
+                            <h3 class="card-title">{{ __('Create categories') }}</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -48,7 +45,7 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label>Category Name</label>
+                                    <label>{{ __('Category Name') }}</label>
                                     <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Category Name">
 
                                     @if ($errors->has('name'))
@@ -56,43 +53,19 @@
                                     @endif
 
                                 </div>
-{{--
-                                <div class="form-group">
-                                    <label>Category Slug</label>
-                                    <input type="text" class="form-control" name="slug" value="{{ old('slug') }}" placeholder="Category Slug">
 
-                                    @if ($errors->has('slug'))
-                                        <span class="text-danger">{{ $errors->first('slug') }}</span>
-                                    @endif
-
-                                </div> --}}
-
-                                {{-- <div class="form-group">
-                                    <label>Category Label</label>
-                                    <input type="text" class="form-control" name="label" value="{{ old('label') }}" placeholder="Category Label">
-
-                                    @if ($errors->has('label'))
-                                        <span class="text-danger">{{ $errors->first('label') }}</span>
-                                    @endif
-
-                                </div> --}}
-
-                                <div class="form-group">
+                                <div class="form-group mb-0">
                                     <label>
                                         <input type="checkbox" name="is_featured" value="0">
-                                        Is Featured
+                                        <span class="check-box-tex ml-2 d-inline-block">{{ ('Is Featured') }}</span>
                                     </label>
                                 </div>
 
-                                {{-- <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                </div> --}}
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary bg-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary bg-primary">{{ __('Submit') }}</button>
                             </div>
                         </form>
                     </div>

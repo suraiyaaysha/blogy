@@ -57,27 +57,6 @@
 
                                 </div>
 
-                                {{-- <div class="form-group">
-                                    <label>Category Slug</label>
-                                    <input type="text" class="form-control" name="slug" value="{{ old('slug', $category->slug) }}" placeholder="Category Slug">
-
-                                    @if ($errors->has('slug'))
-                                        <span class="text-danger">{{ $errors->first('slug') }}</span>
-                                    @endif
-
-                                </div> --}}
-
-                                {{-- <div class="form-group">
-                                    <label>Category Label</label>
-                                    <input type="text" class="form-control" name="label" value="{{ old('label', $category->label) }}" placeholder="Category Label">
-
-                                    @if ($errors->has('label'))
-                                        <span class="text-danger">{{ $errors->first('label') }}</span>
-                                    @endif
-
-                                </div> --}}
-
-
                                 <div class="form-group">
                                     <label>
                                         <input type="checkbox" name="is_featured" value="{{ $category->is_featured }}" {{ $category->is_featured ? 'checked' : '' }}>
@@ -85,10 +64,6 @@
                                     </label>
                                 </div>
 
-                                {{-- <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                </div> --}}
                             </div>
                             <!-- /.card-body -->
 

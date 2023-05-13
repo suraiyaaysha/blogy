@@ -17,6 +17,7 @@ class Post extends Model
         'thumbnail',
         'details',
         'reading_duration',
+        'is_featured',
         'views'
     ];
 
