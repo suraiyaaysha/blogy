@@ -142,38 +142,46 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h4 class="heading">{{ __('Latest Post') }}</h4>
+                    <h4 class="heading">{{ __('Top Post') }}</h4>
                 </div>
             </div>
             <div class="row">
-                @foreach ($latestPosts as $post)
-                    <div class="col-lg-4 col-md-6 mt-4">
-                        <div class="blog-item blog-item-sm">
-                            <div class="blog-item-image">
-                                <a href="{{ url('/posts/'.$post->slug) }}">
-                                    <img src="{{ asset(url($post->thumbnail)) }}" alt="Image">
-                                </a>
-                            </div>
-                            <div class="blog-item-info">
-                                <span class="fs-6 has-line">{{ $post->category->name }}</span>
-                                <h5><a href="{{ url('/posts/'.$post->slug) }}">{{ Str::limit($post->title, 15) }}</a></h5>
-                                <div class="blog-item-info-release">
-                                    <span>{{ $post->updated_at->format('F j, Y') }}</span>
-                                    <span class="dot"></span>
-                                    <span>{{ $post->reading_duration }} {{ __('read') }}</span>
 
+                @if ($topPost->count())
+
+                    @foreach ($topPost as $post)
+                        <div class="col-lg-4 col-md-6 mt-4">
+                            <div class="blog-item blog-item-sm">
+                                <div class="blog-item-image">
+                                    <a href="{{ url('/posts/'.$post->slug) }}">
+                                        <img src="{{ asset(url($post->thumbnail)) }}" alt="Image">
+                                    </a>
                                 </div>
-                                <a href="{{ url('/posts/'.$post->slug) }}" class="btn btn-link">{{ __('Read Article') }}
-                                    <svg width="18" height="12" viewBox="0 0 18 12" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.5 1.5L17 6M17 6L12.5 10.5M17 6H1" stroke="currentColor"
-                                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                                </a>
+                                <div class="blog-item-info">
+                                    <span class="fs-6 has-line">{{ $post->category->name }}</span>
+                                    <h5><a href="{{ url('/posts/'.$post->slug) }}">{{ Str::limit($post->title, 15) }}</a></h5>
+                                    <div class="blog-item-info-release">
+                                        <span>{{ $post->updated_at->format('F j, Y') }}</span>
+                                        <span class="dot"></span>
+                                        <span>{{ $post->reading_duration }} {{ __('read') }}</span>
+
+                                    </div>
+                                    <a href="{{ url('/posts/'.$post->slug) }}" class="btn btn-link">{{ __('Read Article') }}
+                                        <svg width="18" height="12" viewBox="0 0 18 12" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12.5 1.5L17 6M17 6L12.5 10.5M17 6H1" stroke="currentColor"
+                                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+
+                @else
+                    <h4 class="h4">No Posts to Show</h4>
+                @endif
+
             </div>
         </div>
     </section>
@@ -189,7 +197,7 @@
             </div>
             <div class="row">
 
-                @foreach ($featuredPost as $post)
+                {{-- @foreach ($featuredPost as $post)
                     <div class="col-lg-6 col-md-6 mt-4">
                         <div class="blog-item">
                             <div class="blog-item-image">
@@ -215,7 +223,7 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @endforeach --}}
 
             </div>
         </div>
