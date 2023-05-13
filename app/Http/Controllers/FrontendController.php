@@ -9,28 +9,10 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 
-use Illuminate\Support\Facades\DB;
-
 class FrontendController extends Controller
 {
     // To show Home Page
     public function index() {
-
-        // $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
-
-        // $featuredCategories = Category::where('is_featured', true)->take(4)->get();
-        // $categories = Category::all();
-        // // Show all posts to home page
-        // $allPosts = Post::latest()->take(3)->get();
-
-        // // Show Top/Trendy Post based on post views
-        // $topPost = Post::orderBy('views', 'desc')->take(2)->get();
-        // $featuredPosts = Post::where('is_featured', true)->get();
-
-        // // Get the Recent 3 posts
-        // $recentPosts = Post::latest()->take(3)->get();
-
-        // return view('frontend.home', compact('featuredCategories', 'categories', 'recentPosts', 'topPost', 'allPosts', 'featuredPosts'));
         return view('frontend.home');
     }
     // To show Home Page
