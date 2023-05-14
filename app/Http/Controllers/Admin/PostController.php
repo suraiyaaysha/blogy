@@ -124,6 +124,44 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    // public function update(Request $request, $post_id)
+    // {
+    //     // validate data
+    //     $request->validate([
+    //         'title' => 'required|max:255',
+    //         'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:15000',
+    //         'details' => 'required',
+    //         'reading_duration' => 'required',
+    //     ]);
+
+    //     $category = Category::findOrFail($request->category_id);
+
+    //     if ($request->hasFile('thumbnail')) {
+    //         $file = $request->thumbnail;
+    //         $url = $file->move('uploads/blog-img' , $file->hashName());
+    //     } else {
+    //         $url = $category->posts()->find($post_id)->thumbnail;
+    //     }
+
+    //     // Retrieve the authenticated user
+    //     $user = Auth::user();
+
+    //     // Update the post
+    //     $post = Post::with(['tags'])->where('id', $post_id)->update([
+    //         'category_id' => $request->category_id,
+    //         'user_id' => $user->id,
+    //         'title' => $request->title,
+    //         'slug' => Str::slug($request->title),
+    //         'thumbnail' => $url,
+    //         'details' => $request->details,
+    //         'reading_duration' => $request->reading_duration,
+    //         'is_featured' => $request->has('is_featured'),
+    //     ]);
+
+    //     return redirect('admin/posts')->with('message', 'Post Updated successfully');
+
+    // }
+
     public function update(Request $request, $post_id)
     {
         // validate data
@@ -147,19 +185,25 @@ class PostController extends Controller
         $user = Auth::user();
 
         // Update the post
-        $post = Post::with(['tags'])->where('id', $post_id)->update([
-            'category_id' => $request->category_id,
-            'user_id' => $user->id,
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'thumbnail' => $url,
-            'details' => $request->details,
-            'reading_duration' => $request->reading_duration,
-            'is_featured' => $request->has('is_featured'),
-        ]);
+        $post = Post::with(['tags'])->findOrFail($post_id);
+        $post->category_id = $request->category_id;
+        $post->user_id = $user->id;
+        $post->title = $request->title;
+        $post->slug = Str::slug($request->title);
+        $post->thumbnail = $url;
+        $post->details = $request->details;
+        $post->reading_duration = $request->reading_duration;
+        $post->is_featured = $request->has('is_featured');
+        $post->save();
+
+        // Update tags
+        if($request->has('tags')){
+            $post->tags()->sync($request->tags);
+        } else {
+            $post->tags()->detach();
+        }
 
         return redirect('admin/posts')->with('message', 'Post Updated successfully');
-
     }
 
     /**

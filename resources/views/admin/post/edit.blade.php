@@ -107,6 +107,15 @@
                                     </select>
                                 </div> --}}
 
+                                {{-- <div class="form-group">
+                                    <label>{{ __('Tags') }}</label>
+                                    <select name="tags[]" class="block w-full mt-1" multiple>
+                                        @foreach ($tags as $tag)
+                                            <option value="{{ $tag->id }}" {{ in_array($tag->id, $post->tags->pluck('id')->toArray()) ? 'selected' : '' }}>{{ $tag->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div> --}}
+
                                 <div class="form-group">
                                     <label>{{ __('Tags') }}</label>
                                     <select name="tags[]" class="block w-full mt-1" multiple>
@@ -115,6 +124,7 @@
                                         @endforeach
                                     </select>
                                 </div>
+
 
 
                                 <div class="form-group">

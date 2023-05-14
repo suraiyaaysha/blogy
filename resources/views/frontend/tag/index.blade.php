@@ -78,10 +78,9 @@
 
                         <h6>{{ __('Featured Category') }}</h6>
 
-
                         <!-- Show Featured Category start -->
                         @foreach ($featuredCategories as $category)
-                            <div class="featured-category-item" style="background-image: url({{ asset(url($post->thumbnail)) }});">
+                            <div class="featured-category-item" style="background-image: url({{ asset(url($category->thumbnail)) }});">
                                 <a href="{{ url('/categories/' . $category->slug) }}" class="{{ Request::is('categories/'.$category->slug) ? 'active' : '' }}">{{ $category->name }}</a>
                             </div>
                         @endforeach
