@@ -22,7 +22,7 @@
                                     <div class="author-image">
                                         <img src="{{ asset($post->user->profile_photo) }}" alt="Author">
                                     </div>
-                                    <a href="#" class="fs-6">{{ $post->user->name }}</a>
+                                    <a href="{{ url('profile') }}" class="fs-6">{{ $post->user->name }}</a>
                                 </div>
 
                                 <div class="intro-start-release d-flex">

@@ -47,7 +47,7 @@
                 <!-- Menu Starts Here -->
                 <div class="main-menu d-none d-lg-flex">
                     <ul class="main-menu-items list-unstyled">
-                        <li><a href="/" class="main-menu-item {{ Request::is('/') ? 'active-item' : '' }}">{{ __('Home') }}</a></li>
+                        <li><a href="{{ url('/') }}" class="main-menu-item {{ Request::is('/') ? 'active-item' : '' }}">{{ __('Home') }}</a></li>
 
                         <!-- Show Featured Category start -->
                         @foreach ($featuredCategories as $category)
