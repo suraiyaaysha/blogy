@@ -40,4 +40,19 @@ class PostFactory extends Factory
             'views' => $this->faker->randomNumber(2)
         ];
     }
+
+    // Add Like/Unlike to PostFactory
+
+    public function configure()
+    {
+        return $this->afterCreating(function (Post $post) {
+            $users = User::all();
+            $likedByUserIds = $users->random(rand(0, $users->count()))->pluck('id');
+
+            $likedByUserIds->each(function ($userId) use ($post) {
+                $post->likes()->create(['user_id' => $userId]);
+            });
+        });
+    }
+
 }
