@@ -29,8 +29,8 @@ class PostFactory extends Factory
         return [
             // 'category_id' => $this->faker->numberBetween(1, 10),
             'category_id' => $category->id,
-            // 'user_id' => $user->id,
-            'user_id' => $user->id,
+            'user_id' => User::where('email', 'admin@gmail.com')->first()->id, //Only Admin Can create posts
+            // 'user_id' => $user->id, // If post can create any users or Random users factory
             'slug' => $this->faker->slug(),
             'title' => $this->faker->sentence(),
             'thumbnail' => $this->faker->imageUrl(),

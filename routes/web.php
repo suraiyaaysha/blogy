@@ -125,7 +125,8 @@ Route::get('/tags/{slug}', [FrontendController::class, 'showTag'])->name('tags.i
 
 Route::prefix('admin')->group(function () {
 
-    Route::middleware('auth')->group(function () {
+    // Route::middleware('auth')->group(function () {
+    Route::middleware(['auth', 'admin'])->group(function () {
         // Dashboard
         Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
