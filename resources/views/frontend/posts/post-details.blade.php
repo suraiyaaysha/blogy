@@ -136,7 +136,7 @@
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                             stroke-linejoin="round" />
                                     </svg>
-                                    <span>{{ $post->likes()->count() }} Likes</span>
+                                    <span>{{ $post->likes()->count() }} {{ __('Likes') }}</span>
                                 </div>
                                 <div class="blogy-counts">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -146,7 +146,7 @@
                                             fill="white" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
-                                    <span>195 Comments</span>
+                                    <span>{{ $post->comments()->count() }} {{ __('Comments') }}</span>
                                 </div>
                             </div>
                         </div>
