@@ -1,4 +1,6 @@
-    @include('frontend.layouts.navbar')
+    @extends('frontend.layouts.app')
+
+    @section('content')
 
     <!-- Page Banner Area Starts Here -->
     <section class="search-area page-banner-area">
@@ -59,4 +61,4 @@
     </section>
     <!-- All Categories Collection Ends Here -->
 
-    @include('frontend.layouts.footer')
+    @endsection

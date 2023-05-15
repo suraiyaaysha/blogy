@@ -87,20 +87,3 @@
         </div>
     </footer>
     <!-- Footer Ends Here -->
-    <!-- jQuery JS Link -->
-    <script src="{{ asset(url('frontend/assets/js/jquery-3.6.0.min.js')) }}"></script>
-
-    <!-- Bootstrap JS Link -->
-    <script src="{{ asset(url('frontend/assets/js/bootstrap.bundle.min.js')) }}"></script>
-
-    <!-- Menu JS Link -->
-    <script src="{{ asset(url('frontend/assets/js/menu.js')) }}"></script>
-
-    <!-- Slick JS Link -->
-    <script src="{{ asset(url('frontend/assets/js/slick.min.js')) }}"></script>
-
-    <!-- Custom JS Link -->
-    <script src="{{ asset(url('frontend/assets/js/main.js')) }}"></script>
-</body>
-
-</html>

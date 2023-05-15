@@ -1,44 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard 3</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{ asset(url('admin/assets/plugins/fontawesome-free/css/all.min.css')) }}">
-  <!-- IonIcons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset(url('admin/assets/css/adminlte.min.css')) }}">
+    <!-- Bootstrap CSS Link -->
+    <link rel="stylesheet" href="{{ asset(url('frontend/assets/css/vendor/bootstrap.min.css')) }}">
+
+    <!-- Slick CSS Link -->
+    <link rel="stylesheet" href="{{ asset(url('frontend/assets/css/vendor/slick.css')) }}">
+    <link rel="stylesheet" href="{{ asset(url('frontend/assets/css/vendor/slick-theme.css')) }}">
+
+    <!-- Icon Library Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+    <!-- Theme CSS Link -->
+    <link rel="stylesheet" href="{{ asset(url('frontend/assets/css/main.css')) }}">
+
+    <title>{{ __('Blogy-Home') }}</title>
 </head>
-<!--
-`body` tag options:
 
-  Apply one or more of the following classes to to the body tag
-  to get the desired effect
-
-  * sidebar-collapse
-  * sidebar-mini
--->
-<body class="hold-transition sidebar-mini">
-<div class="wrapper">
+<body>
   <!-- Navbar -->
-    @include('admin.layouts.navbar')
+    @include('frontend.layouts.navbar')
   <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-    @include('admin.layouts.sidebar')
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
 
     @yield('content')
 
-  </div>
-  <!-- /.content-wrapper -->
+ @include('frontend.layouts.footer')
 
+     <!-- jQuery JS Link -->
+    <script src="{{ asset(url('frontend/assets/js/jquery-3.6.0.min.js')) }}"></script>
 
- @include('admin.layouts.footer')
+    <!-- Bootstrap JS Link -->
+    <script src="{{ asset(url('frontend/assets/js/bootstrap.bundle.min.js')) }}"></script>
+
+    <!-- Menu JS Link -->
+    <script src="{{ asset(url('frontend/assets/js/menu.js')) }}"></script>
+
+    <!-- Slick JS Link -->
+    <script src="{{ asset(url('frontend/assets/js/slick.min.js')) }}"></script>
+
+    <!-- Custom JS Link -->
+    <script src="{{ asset(url('frontend/assets/js/main.js')) }}"></script>
+</body>
+
+</html>

@@ -1,4 +1,6 @@
-    @include('frontend.layouts.navbar')
+    @extends('frontend.layouts.app')
+
+    @section('content')
 
     <!-- Banner Starts Here -->
     <section class="banner"
@@ -291,4 +293,4 @@
     </section>
     <!-- All Post Ends Here -->
 
-    @include('frontend.layouts.footer')
+    @endsection

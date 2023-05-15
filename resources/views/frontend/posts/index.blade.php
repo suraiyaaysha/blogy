@@ -1,4 +1,6 @@
-    @include('frontend.layouts.navbar')
+    @extends('frontend.layouts.app')
+
+    @section('content')
 
     <!-- All Post Starts Here -->
     <section class="section-padding all-post-area">
@@ -82,4 +84,4 @@
     </section>
     <!-- All Post Ends Here -->
 
-    @include('frontend.layouts.footer')
+    @endsection

@@ -1,5 +1,7 @@
 {{-- <x-app-layout> --}}
-@include('frontend.layouts.navbar')
+    @extends('frontend.layouts.app')
+
+    @section('content')
 
     {{-- <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -25,5 +27,5 @@
         </div>
     </div>
 
-@include('frontend.layouts.footer')
+@endsection
 {{-- </x-app-layout> --}}
