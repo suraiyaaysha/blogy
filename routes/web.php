@@ -76,7 +76,9 @@ Route::get('/categories/{category_slug}', [FrontendController::class, 'category'
 // Route::get('/categories/{category_slug}/{post_slug}', [FrontendController::class, 'post']);
 Route::get('/categories/{category_slug}/{post_slug}', [FrontendController::class, 'post']);
 
-
+// Posts Like/Unlike Route
+Route::post('/posts/{post}/like', [FrontendController::class, 'like'])->name('posts.like');
+Route::delete('/posts/{post}/unlike', [FrontendController::class, 'unlike'])->name('posts.unlike');
 
 
 // Comment App url
@@ -141,7 +143,7 @@ Route::prefix('admin')->group(function () {
         Route::put('category/{id}/update', [CategoryController::class, 'update'])->name('category.update');
         Route::delete('category/{id}/delete', [CategoryController::class, 'destroy'])->name('category.destroy');
 
-        // Blog Route
+        // Blog Post Route
         Route::controller(App\Http\Controllers\Admin\PostController::class)->group(function () {
             Route::get('posts', 'index');
             Route::get('post/create', 'create');

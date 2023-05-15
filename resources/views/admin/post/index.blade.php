@@ -47,6 +47,7 @@
                                         <th>{{ __('Details') }}</th>
                                         <th>{{ __('Featured or Not') }}</th>
                                         <th>{{ __('Tags') }}</th>
+                                        <th>{{ __('Likes') }}</th>
                                         <th style="width: 40px">{{ __('Action') }}</th>
                                     </tr>
                                 </thead>
@@ -78,6 +79,8 @@
                                                 {{ $tag->name }},
                                                 @endforeach
                                             </td>
+
+                                            <td>{{ $post->likes()->count() }}</td>
 
                                             <td>
                                                 <div class="d-flex">

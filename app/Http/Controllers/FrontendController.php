@@ -217,4 +217,16 @@ class FrontendController extends Controller
         return view('frontend.tag.index', compact('tags', 'featuredCategories', 'posts', 'tag'));
     }
 
+    // Like Method
+    public function like(Post $post) {
+        auth()->user()->likes()->create(['post_id' => $post->id]);
+        return back();
+    }
+
+    // Unlike Method
+    public function unlike(Post $post) {
+        auth()->user()->likes()->where('post_id', $post->id)->delete();
+        return back();
+    }
+
 }

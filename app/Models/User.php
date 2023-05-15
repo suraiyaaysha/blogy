@@ -53,4 +53,9 @@ class User extends Authenticatable
         return $this->hasMany(Category::class, 'user_id', 'id');
         // return $this->hasMany(Category::class, 'category_id', 'id');
     }
+    
+    public function likes() {
+        return $this->hasMany(Like::class);
+    }
+
 }
