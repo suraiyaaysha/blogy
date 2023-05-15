@@ -128,7 +128,6 @@ class FrontendController extends Controller
         $allPosts = Post::latest()->take(3)->get();
 
 
-
         $featuredPosts = Post::where('is_featured', true)->take(2)->get();
         //  $featuredPosts = Post::where('is_featured', true)->orderBy('created_at', 'desc')->get();
         return view('frontend.home', compact('featuredPosts', 'featuredCategories', 'recentPosts', 'topPost', 'allPosts'));

@@ -1187,7 +1187,7 @@ Version      : 1.0
   margin-left: 10px;
 }
 
-.social-links a {
+.social-links a, .social-links button {
   height: 40px;
   width: 40px;
   background-color: #F5F5F5;
@@ -1207,12 +1207,14 @@ Version      : 1.0
   transition: 0.3s all linear;
 }
 
-.social-links a:hover {
-  color: white;
-  border-color: #FB743E;
-  background-color: #FB743E;
+.social-links a:hover, .social-links button:hover{
+  color: white!important;
+  border-color: #FB743E!important;
+  background-color: #FB743E!important;
 }
-
+.social-links button svg{
+    margin-right: 0;
+}
 .header {
   /* overflow: hidden !important; */
   display: -webkit-box;
@@ -1811,5 +1813,14 @@ section.details-banner {
     margin: 0 5px 5px 0;
 }
 /* Tags */
+
+/* Social Extra css */
+div#social-links {
+    display: inline-block;
+}
+#copyButton {
+    margin-left: .5rem;
+}
+/* Social Extra css */
 
 /* Extra CSS for Dynamic Start */

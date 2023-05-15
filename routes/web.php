@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\SocialShareController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,7 +100,8 @@ Route::post('comments/store', [App\Http\Controllers\CommentController::class, 's
 Route::get('/posts', [FrontendController::class, 'allTags'])->name('posts.index');
 Route::get('/tags/{slug}', [FrontendController::class, 'showTag'])->name('tags.index');
 
-
+// Social Share
+Route::get('/posts/{post_slug}', [SocialShareController::class, 'socialShare']);
 
 /*
 |-----------------------------

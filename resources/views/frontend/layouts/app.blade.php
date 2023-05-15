@@ -19,6 +19,8 @@
     <!-- Theme CSS Link -->
     <link rel="stylesheet" href="{{ asset(url('frontend/assets/css/main.css')) }}">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <title>{{ __('Blogy-Home') }}</title>
 </head>
 
@@ -45,6 +47,8 @@
 
     <!-- Custom JS Link -->
     <script src="{{ asset(url('frontend/assets/js/main.js')) }}"></script>
+
+    @yield('scripts')
 </body>
 
 </html>
