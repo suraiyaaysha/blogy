@@ -1823,5 +1823,14 @@ div#social-links {
     margin-left: .5rem;
 }
 /* Social Extra css */
+/* Posts page */
+.filter-form .btn-default-sm {
+    height: 43px;
+}
+.filter-form .form-group select {
+    height: 43px;
+    padding: 0 5px;
+}
+/* Posts page */
 
 /* Extra CSS for Dynamic Start */

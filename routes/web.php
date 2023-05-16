@@ -112,6 +112,10 @@ Route::delete('/admin/subscriber-list/{id}/delete', [NewsletterController::class
 // Search
 Route::get('/search', [FrontendController::class, 'search'])->name('search');
 
+// filterPosts
+Route::get('/posts', [FrontendController::class, 'filterPosts'])->name('posts.index');
+
+
 /*
 |-----------------------------
 | Category, Post, Category wise posts

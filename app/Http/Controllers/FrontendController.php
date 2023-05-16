@@ -194,8 +194,6 @@ class FrontendController extends Controller
 
     // Show All Posts to Posts Page Start
     public function allTags() {
-
-        // $featuredCategories = DB::table('categories')->where('is_featured', true)->take(4)->get();
         $featuredCategories = Category::where('is_featured', true)->take(4)->get();
         $allPosts = Post::latest()->paginate(4);
 
@@ -237,17 +235,53 @@ class FrontendController extends Controller
         $posts = Post::query()
             ->where('title', 'LIKE', "%{$search}%")
             ->orWhere('details', 'LIKE', "%{$search}%")
-            ->paginate(4);;
+            ->paginate(4);
             // ->get();
 
         // Pass the search term to the view
         $searchTerm = $search;
 
-        // Return the search view with the results compacted
-        // return view('frontend.search', compact('posts', 'search'));
-
         // Return the search view with the results and search term compacted
         return view('frontend.search', compact('posts', 'searchTerm'));
     }
+
+    // Filter Posts Start
+    public function filterPosts(Request $request)
+    {
+        $allPosts = Post::latest()->paginate(4);
+        $featuredCategories = Category::where('is_featured', true)->take(4)->get();
+
+        $tags = Tag::all();
+
+        $category = $request->get('category');
+        $isFeatured = $request->get('is_featured');
+        $tag = $request->get('tag'); // Retrieve the tag parameter from the request
+
+        $categories = Category::pluck('name', 'id');
+        $isFeaturedOptions = Post::distinct('is_featured')->pluck('is_featured');
+
+        $posts = Post::query();
+
+        if ($category) {
+            $posts->where('category_id', $category);
+        }
+
+        if ($isFeatured !== null) {
+            $posts->where('is_featured', $isFeatured);
+        }
+
+        if ($tag) {
+            // Retrieve the posts that have the selected tag
+            $posts->whereHas('tags', function ($query) use ($tag) {
+                $query->where('name', $tag);
+            });
+        }
+
+        $allPosts = $posts->paginate(4);
+
+        return view('frontend.posts.index', compact('allPosts', 'categories', 'isFeaturedOptions', 'featuredCategories', 'tags'));
+    }
+    // Filter Posts End
+
 
 }
