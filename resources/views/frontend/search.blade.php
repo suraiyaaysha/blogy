@@ -71,7 +71,7 @@
 
                 @else
                     <div class="col-md-12">
-                        <h2>No posts found</h2>
+                        <h2>{{ __('No posts found') }}</h2>
                     </div>
                 @endif
             </div>
