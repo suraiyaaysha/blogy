@@ -71,13 +71,19 @@
                 <div class="col-lg-4">
                     <div class="footer-wizard">
                         <h6>{{ __('Newsletter') }}</h6>
-                        <form action="#">
+                        <form id="subscribeForm" action="{{ route('subscribe') }}" method="POST">
+                            @csrf
                             <div class="footer-wizard-form">
-                                <input type="email" placeholder="Enter Email">
-                                <button class="btn btn-default btn-default-sm">{{ __('Subscribe') }}</button>
+                                <input type="email" name="email" placeholder="{{ __('Enter Email') }}">
+                                <button type="submit" class="btn btn-default btn-default-sm">{{ __('Subscribe') }}</button>
                             </div>
+                            @if ($errors->has('email'))
+                                <span class="text-danger">{{ $errors->first('email') }}</span>
+                            @endif
                         </form>
+
                     </div>
+
                 </div>
             </div>
             <div class="copy-right">

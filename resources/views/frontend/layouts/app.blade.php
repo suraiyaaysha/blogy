@@ -19,7 +19,7 @@
     <!-- Theme CSS Link -->
     <link rel="stylesheet" href="{{ asset(url('frontend/assets/css/main.css')) }}">
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <title>{{ __('Blogy-Home') }}</title>
 </head>
@@ -47,6 +47,59 @@
 
     <!-- Custom JS Link -->
     <script src="{{ asset(url('frontend/assets/js/main.js')) }}"></script>
+
+
+    {{-- Footer newsletter --}}
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const url = form.action;
+            const formData = new FormData(form);
+
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.hasOwnProperty('errors')) {
+                    // Display validation errors using SweetAlert2
+                    const errors = Object.values(data.errors).join('<br>');
+                    Swal.fire({
+                        icon: 'error',
+                        // title: 'Subscriptions Failed!',
+                        title: errors,
+                        // html: errors,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                } else if (data.hasOwnProperty('message')) {
+                    // Display success message using SweetAlert2
+                    Swal.fire({
+                        icon: 'success',
+                        // title: 'Congratulations!',
+                        title: data.message,
+                        // text: data.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        // Optionally, you can redirect the user to another page after successful subscription
+                        // window.location.href = '/thank-you';
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+    {{-- Footer newsletter --}}
+
 
     @yield('scripts')
 </body>

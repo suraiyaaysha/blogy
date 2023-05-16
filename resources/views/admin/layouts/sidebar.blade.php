@@ -50,6 +50,12 @@
               <p>{{ __('Categories') }}</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ url('/admin/subscriber-list') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>{{ __('Subscribers') }}</p>
+            </a>
+          </li>
 
           <li class="nav-item">
             <a href="{{ url('/admin/posts') }}" class="nav-link">

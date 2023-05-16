@@ -11,6 +11,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\SocialShareController;
+use App\Http\Controllers\NewsletterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,6 +103,11 @@ Route::get('/tags/{slug}', [FrontendController::class, 'showTag'])->name('tags.i
 
 // Social Share
 Route::get('/posts/{post_slug}', [SocialShareController::class, 'socialShare']);
+
+// Newsletter
+Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('subscribe');
+Route::get('/admin/subscriber-list', [NewsletterController::class, 'showSubscriber']);
+Route::delete('/admin/subscriber-list/{id}/delete', [NewsletterController::class, 'destroy']);
 
 /*
 |-----------------------------
