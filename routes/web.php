@@ -109,6 +109,9 @@ Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('sub
 Route::get('/admin/subscriber-list', [NewsletterController::class, 'showSubscriber']);
 Route::delete('/admin/subscriber-list/{id}/delete', [NewsletterController::class, 'destroy']);
 
+// Search
+Route::get('/search', [FrontendController::class, 'search'])->name('search');
+
 /*
 |-----------------------------
 | Category, Post, Category wise posts

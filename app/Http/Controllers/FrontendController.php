@@ -228,4 +228,26 @@ class FrontendController extends Controller
         return back();
     }
 
+    // Search Posts
+    public function search(Request $request){
+        // Get the search value from the request
+        $search = $request->input('search');
+
+        // Search in the title and body columns from the posts table
+        $posts = Post::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('details', 'LIKE', "%{$search}%")
+            ->paginate(4);;
+            // ->get();
+
+        // Pass the search term to the view
+        $searchTerm = $search;
+
+        // Return the search view with the results compacted
+        // return view('frontend.search', compact('posts', 'search'));
+
+        // Return the search view with the results and search term compacted
+        return view('frontend.search', compact('posts', 'searchTerm'));
+    }
+
 }

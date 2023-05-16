@@ -2,6 +2,14 @@
 
     @section('content')
 
+    <section class="search-area">
+        <div class="row">
+            <div class="col-lg-9 text-center mx-auto">
+                <h4>All Posts</h4>
+            </div>
+        </div>
+    </section>
+
     <!-- All Post Starts Here -->
     <section class="section-padding all-post-area">
         <div class="container">

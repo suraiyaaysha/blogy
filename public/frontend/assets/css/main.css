@@ -1356,12 +1356,13 @@ Version      : 1.0
   border: 2px solid #FB743E;
 }
 
-.header .main-menu .header-searchbar svg {
+.header .main-menu .header-searchbar svg, .header .main-menu .header-searchbar button {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  left: 16px;
+  /* left: 16px; */
+  left: 8px;
   color: #272343;
 }
 
