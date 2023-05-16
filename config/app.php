@@ -168,8 +168,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        
-        // Featured categories
+
+        // Featured categories variable for getting inside every page
         App\Providers\FeaturedCategoriesServiceProvider::class,
 
     ])->toArray(),
