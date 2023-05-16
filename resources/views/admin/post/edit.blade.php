@@ -133,3 +133,14 @@
     </div>
     <!-- /.content -->
 @endsection
+
+@section('scripts')
+<!-- For CK Editor -->
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.ckeditor').ckeditor();
+        });
+</script>
+<!-- For CK Editor -->
+@endsection

@@ -17,7 +17,7 @@
                     </div>
                 @endif
             </div>
-            
+
             {{-- <h1 class="m-0">Create ategories</h1> --}}
 
             <a href="{{ url('admin/posts') }}" class="btn btn-primary mr-2 float-right">Go Post List</a>
@@ -133,4 +133,15 @@
         <!-- /.container-fluid -->
     </div>
     <!-- /.content -->
+@endsection
+
+@section('scripts')
+<!-- For CK Editor -->
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.ckeditor').ckeditor();
+        });
+</script>
+<!-- For CK Editor -->
 @endsection
