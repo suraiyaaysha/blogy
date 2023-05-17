@@ -95,11 +95,6 @@
                             @endforeach
 
                             {{-- Pagination start --}}
-
-                            {{-- <div class="pagination mt-5 text-center">
-                                {{ $allPosts->links() }}
-                            </div> --}}
-
                             <div class="pagination mt-5 text-center">
                                 {{-- {{ $allPosts->links() }} --}}
                                 {{ $allPosts->appends(request()->query())->links() }}
