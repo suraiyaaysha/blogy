@@ -91,6 +91,32 @@
             </a>
           </li>
 
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                    {{ __('Settings') }}
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+
+                    <li class="nav-item">
+                        <a href="{{ url('/admin/tag') }}" class="nav-link {{ Request::is('admin/tag') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>{{ ('Home Page Slider') }}</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ url('/admin/tag/create') }}" class="nav-link {{ Request::is('admin/tag/create') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>{{ __('Website Settings') }}</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

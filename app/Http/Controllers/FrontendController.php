@@ -8,11 +8,16 @@ use App\Models\Category;
 
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\Cms;
 
 class FrontendController extends Controller
 {
     // To show Home Page
     public function index() {
+        // $categories = Category::all();
+
+
+        // return view('frontend.home', compact('categories'));
         return view('frontend.home');
     }
     // To show Home Page
@@ -100,7 +105,6 @@ class FrontendController extends Controller
 
         // Show Top/Trendy Post based on post views
         $topPost = Post::orderBy('views', 'desc')->take(2)->get();
-
 
 
         // Get the Recent 3 posts
@@ -285,5 +289,31 @@ class FrontendController extends Controller
         return view('frontend.posts.index', compact('allPosts', 'categories', 'isFeaturedOptions', 'featuredCategories', 'tags', 'category', 'isFeatured', 'tag'));
     }
     // Filter Posts End
-    
+
+
+    // For Home Banner Image CMS Controller
+    public function home() {
+        $cms = Cms::first();
+
+        return view('frontend.home', compact('cms'));
+    }
+    // For Home Banner Image CMS Controller
+
+    // Home Banner Post Slider Start
+    public function postSlider() {
+        $featuredCategories = Category::where('is_featured', true)->take(4)->get();
+        $recentPosts = Post::latest()->take(3)->get();
+        $topPost = Post::orderBy('views', 'desc')->take(2)->get();
+        $featuredPosts = Post::where('is_featured', true)->take(2)->get();
+        $allPosts = Post::latest()->take(3)->get();
+
+        $cms = Cms::first();
+
+        $postSliders = Post::latest()->paginate(3);
+
+        return view('frontend.home', compact('postSliders', 'featuredCategories', 'recentPosts', 'topPost', 'featuredPosts', 'allPosts', 'cms'));
+    }
+    // Home Banner Post Slider End
+
+
 }

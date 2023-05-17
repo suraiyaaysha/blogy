@@ -4,71 +4,29 @@
 
     <!-- Banner Starts Here -->
     <section class="banner"
-        style="background-color: #F5F5F5; background-image: url('frontend/assets/images/banner.jpg'); background-position: right; background-repeat: no-repeat;">
+        style="background-color: #F5F5F5; background-image: url('{{ $cms->home_banner_img }}'); background-position: right; background-repeat: no-repeat;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="banner-slider">
-                        <div class="banner-content">
-                            <div class="banner-content-main">
-                                <span class="fs-6 has-line">Interior</span>
-                                <h4><a href="#">How to Get Started With Interior Design</a></h4>
-                                <div class="blog-date">
-                                    <div class="blog-date-start">
-                                        <span>March 25, 2021</span>
+                        @foreach ($postSliders as $post)
+                            <div class="banner-content">
+                                <div class="banner-content-main">
+                                    <span class="fs-6 has-line">{{ $post->category->name }}</span>
+                                    <h4><a href="{{ url('/posts/' . $post->slug) }}">{{ $post->title }}</a></h4>
+                                    <div class="blog-date">
+                                        <div class="blog-date-start">
+                                            <span>{{ $post->created_at->format('F j, Y') }}</span>
+                                        </div>
+                                        <div class="blog-date-end">
+                                            <span>{{ $post->reading_duration }} {{ __('read') }}</span>
+                                        </div>
                                     </div>
-                                    <div class="blog-date-end">
-                                        <span>4 min read</span>
-                                    </div>
+                                    <p>{{ Str::limit($post->details, 150) }}</p>
+                                    <a href="{{ url('/posts/' . $post->slug) }}" class="btn btn-default d-inline-block">{{ __('Read More') }}</a>
                                 </div>
-                                <p>
-                                    Nulla et commodo turpis. Etiam hendrerit ornare pharetra. Cras eleifend purus vitae
-                                    lorem venenatis bibendum. Sed commodo mi quis augue finibus, ut feugiat erat
-                                    aliquam.
-                                </p>
-                                <a href="#" class="btn btn-default d-inline-block">Read More</a>
                             </div>
-                        </div>
-                        <div class="banner-content">
-                            <div class="banner-content-main">
-                                <span class="fs-6 has-line">Interior</span>
-                                <h4><a href="#">How to Get Started With Interior Design</a></h4>
-                                <div class="blog-date">
-                                    <div class="blog-date-start">
-                                        <span>March 25, 2021</span>
-                                    </div>
-                                    <div class="blog-date-end">
-                                        <span>4 min read</span>
-                                    </div>
-                                </div>
-                                <p>
-                                    Nulla et commodo turpis. Etiam hendrerit ornare pharetra. Cras eleifend purus vitae
-                                    lorem venenatis bibendum. Sed commodo mi quis augue finibus, ut feugiat erat
-                                    aliquam.
-                                </p>
-                                <a href="#" class="btn btn-default d-inline-block">Read More</a>
-                            </div>
-                        </div>
-                        <div class="banner-content">
-                            <div class="banner-content-main">
-                                <span class="fs-6 has-line">Interior</span>
-                                <h4><a href="#">How to Get Started With Interior Design</a></h4>
-                                <div class="blog-date">
-                                    <div class="blog-date-start">
-                                        <span>March 25, 2021</span>
-                                    </div>
-                                    <div class="blog-date-end">
-                                        <span>4 min read</span>
-                                    </div>
-                                </div>
-                                <p>
-                                    Nulla et commodo turpis. Etiam hendrerit ornare pharetra. Cras eleifend purus vitae
-                                    lorem venenatis bibendum. Sed commodo mi quis augue finibus, ut feugiat erat
-                                    aliquam.
-                                </p>
-                                <a href="#" class="btn btn-default d-inline-block">Read More</a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

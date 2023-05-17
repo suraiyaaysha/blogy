@@ -15,6 +15,7 @@ use App\Http\Controllers\NewsletterController;
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\CmsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,8 +75,13 @@ Route::get('/', [FrontendController::class, 'latestPost']);
 // Get Featured Posts
 Route::get('/', [FrontendController::class, 'featuredPosts']);
 
+
+// Frontend CMS Related Route
+Route::get('/', [FrontendController::class, 'home'])->name('frontend.home');
+
 // Home Banner Slider
 Route::get('/', [FrontendController::class, 'postSlider']);
+
 
 // Only Posts Page
 Route::get('/posts', [FrontendController::class, 'allPosts'])->name('posts.index');
@@ -126,7 +132,6 @@ Route::get('/search', [FrontendController::class, 'search'])->name('search');
 
 // filterPosts
 Route::get('/posts', [FrontendController::class, 'filterPosts'])->name('posts.index');
-
 
 /*
 |-----------------------------
@@ -201,7 +206,16 @@ Route::prefix('admin')->group(function () {
         Route::delete('tag/{id}/delete', [TagController::class, 'destroy'])->name('tag.destroy');
 
         // Settings Route
-        Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
+        // Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
+
+        Route::controller(CmsController::class)->group(function(){
+            Route::get('settings', 'home');
+            Route::put('settings', 'homeUpdate')->name('settings.homeUpdate');
+            // Route::get('admin/about', 'about')->name('about');
+            // Route::put('admin/about', 'aboutUpdate')->name('about.aboutUpdate');
+            // Route::get('admin/contact', 'contact')->name('contact');
+            // Route::put('admin/contact', 'contactUpdate')->name('contact.contactUpdate');
+        });
 
     });
 
