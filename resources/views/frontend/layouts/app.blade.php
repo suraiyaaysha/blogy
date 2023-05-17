@@ -100,7 +100,6 @@
     </script>
     {{-- Footer newsletter --}}
 
-
     @yield('scripts')
 </body>
 

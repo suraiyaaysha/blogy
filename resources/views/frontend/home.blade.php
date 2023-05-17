@@ -26,7 +26,7 @@
                                     lorem venenatis bibendum. Sed commodo mi quis augue finibus, ut feugiat erat
                                     aliquam.
                                 </p>
-                                <a href="#" class="btn btn-default">Read More</a>
+                                <a href="#" class="btn btn-default d-inline-block">Read More</a>
                             </div>
                         </div>
                         <div class="banner-content">
@@ -46,7 +46,7 @@
                                     lorem venenatis bibendum. Sed commodo mi quis augue finibus, ut feugiat erat
                                     aliquam.
                                 </p>
-                                <a href="#" class="btn btn-default">Read More</a>
+                                <a href="#" class="btn btn-default d-inline-block">Read More</a>
                             </div>
                         </div>
                         <div class="banner-content">
@@ -66,7 +66,7 @@
                                     lorem venenatis bibendum. Sed commodo mi quis augue finibus, ut feugiat erat
                                     aliquam.
                                 </p>
-                                <a href="#" class="btn btn-default">Read More</a>
+                                <a href="#" class="btn btn-default d-inline-block">Read More</a>
                             </div>
                         </div>
                     </div>
