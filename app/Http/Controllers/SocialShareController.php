@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Cms;
 
 class SocialShareController extends Controller
 {
@@ -15,7 +16,6 @@ class SocialShareController extends Controller
      */
     public function socialShare(string $post_slug)
     {
-
         $featuredCategories = Category::where('is_featured', true)->take(4)->get();
          $post = Post::where('slug', $post_slug)->first();
         // Determine the link URL for the "View All" link

@@ -172,6 +172,9 @@ return [
         // Featured categories variable for getting inside every page
         App\Providers\FeaturedCategoriesServiceProvider::class,
 
+        // Cms variable for getting inside every page
+        App\Providers\CmsServiceProvider::class,
+
     ])->toArray(),
 
     /*
