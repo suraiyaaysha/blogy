@@ -249,83 +249,41 @@ class FrontendController extends Controller
     }
 
     // Filter Posts Start
-    // public function filterPosts(Request $request)
-    // {
-    //     $allPosts = Post::latest()->paginate(4);
-    //     $featuredCategories = Category::where('is_featured', true)->take(4)->get();
+    public function filterPosts(Request $request)
+    {
+        $allPosts = Post::latest()->paginate(4);
+        $featuredCategories = Category::where('is_featured', true)->take(4)->get();
 
-    //     $tags = Tag::all();
+        $tags = Tag::all();
 
-    //     $category = $request->get('category');
-    //     $isFeatured = $request->get('is_featured');
-    //     $tag = $request->get('tag'); // Retrieve the tag parameter from the request
+        $category = $request->input('category'); // Assign the value of 'category' parameter to $category variable
+        $isFeatured = $request->input('is_featured'); // Assign the value of 'is_featured' parameter to $isFeatured variable
+        $tag = $request->input('tag'); // Assign the value of 'tag' parameter to $tag variable
 
-    //     $categories = Category::pluck('name', 'id');
-    //     $isFeaturedOptions = Post::distinct('is_featured')->pluck('is_featured');
+        $categories = Category::pluck('name', 'id');
+        $isFeaturedOptions = Post::distinct('is_featured')->pluck('is_featured');
 
-    //     $posts = Post::query();
+        $posts = Post::query();
 
-    //     if ($category) {
-    //         $posts->where('category_id', $category);
-    //     }
+        if ($category) {
+            $posts->where('category_id', $category);
+        }
 
-    //     if ($isFeatured !== null) {
-    //         $posts->where('is_featured', $isFeatured);
-    //     }
+        if ($isFeatured !== null) {
+            $posts->where('is_featured', $isFeatured);
+        }
 
-    //     if ($tag) {
-    //         // Retrieve the posts that have the selected tag
-    //         $posts->whereHas('tags', function ($query) use ($tag) {
-    //             $query->where('name', $tag);
-    //         });
-    //     }
+        if ($tag) {
+            // Retrieve the posts that have the selected tag
+            $posts->whereHas('tags', function ($query) use ($tag) {
+                $query->where('name', $tag);
+            });
+        }
 
-    //     $allPosts = $posts->paginate(4);
+        $allPosts = $posts->paginate(3);
 
-    //     return view('frontend.posts.index', compact('allPosts', 'categories', 'isFeaturedOptions', 'featuredCategories', 'tags'));
-    // }
-
-// Filter Posts Start
-public function filterPosts(Request $request)
-{
-    $allPosts = Post::latest()->paginate(4);
-    $featuredCategories = Category::where('is_featured', true)->take(4)->get();
-
-    $tags = Tag::all();
-
-    $category = $request->input('category'); // Assign the value of 'category' parameter to $category variable
-    $isFeatured = $request->input('is_featured'); // Assign the value of 'is_featured' parameter to $isFeatured variable
-    $tag = $request->input('tag'); // Assign the value of 'tag' parameter to $tag variable
-
-    $categories = Category::pluck('name', 'id');
-    $isFeaturedOptions = Post::distinct('is_featured')->pluck('is_featured');
-
-    $posts = Post::query();
-
-    if ($category) {
-        $posts->where('category_id', $category);
+        return view('frontend.posts.index', compact('allPosts', 'categories', 'isFeaturedOptions', 'featuredCategories', 'tags', 'category', 'isFeatured', 'tag'));
     }
-
-    if ($isFeatured !== null) {
-        $posts->where('is_featured', $isFeatured);
-    }
-
-    if ($tag) {
-        // Retrieve the posts that have the selected tag
-        $posts->whereHas('tags', function ($query) use ($tag) {
-            $query->where('name', $tag);
-        });
-    }
-
-    $allPosts = $posts->paginate(3);
-
-    return view('frontend.posts.index', compact('allPosts', 'categories', 'isFeaturedOptions', 'featuredCategories', 'tags', 'category', 'isFeatured', 'tag'));
-}
-// Filter Posts End
-
-
-
     // Filter Posts End
-
-
+    
 }

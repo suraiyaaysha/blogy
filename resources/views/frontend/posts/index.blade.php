@@ -18,7 +18,7 @@
 
                     <!-- Posts Filter Options Start -->
                     <div class="row">
-                        {{-- <div class="col-md-12 mb-4">
+                        <div class="col-md-12 mb-4">
                             <form action="{{ route('posts.index') }}" method="GET" class="d-flex filter-form align-items-center">
                                 <h5 class="h5 font-bold me-2 mb-0">Filter By:</h5>
                                 <div class="form-group me-2">
@@ -26,7 +26,7 @@
                                     <select name="category" id="category">
                                         <option value="">All</option>
                                         @foreach ($categories as $categoryId => $categoryName)
-                                            <option value="{{ $categoryId }}">{{ $categoryName }}</option>
+                                            <option value="{{ $categoryId }}" @if (request('category') == $categoryId) selected @endif>{{ $categoryName }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -35,9 +35,8 @@
                                     <label for="is_featured">Featured:</label>
                                     <select name="is_featured" id="is_featured">
                                         <option value="">All</option>
-                                        @foreach ($isFeaturedOptions as $isFeaturedOption)
-                                            <option value="{{ $isFeaturedOption }}">{{ $isFeaturedOption ? 'Yes' : 'No' }}</option>
-                                        @endforeach
+                                        <option value="1" @if (request('is_featured') == '1') selected @endif>Yes</option>
+                                        <option value="0" @if (request('is_featured') == '0') selected @endif>No</option>
                                     </select>
                                 </div>
 
@@ -46,7 +45,7 @@
                                     <select name="tag" id="tag">
                                         <option value="">All</option>
                                         @foreach ($tags as $tag)
-                                            <option value="{{ $tag->name }}">{{ $tag->name }}</option>
+                                            <option value="{{ $tag->name }}" @if (request('tag') == $tag->name) selected @endif>{{ $tag->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -55,46 +54,7 @@
                                     <button type="submit" class="btn btn-default btn-default-sm">Apply Filters</button>
                                 </div>
                             </form>
-                        </div> --}}
-
-<div class="col-md-12 mb-4">
-        <form action="{{ route('posts.index') }}" method="GET" class="d-flex filter-form align-items-center">
-            <h5 class="h5 font-bold me-2 mb-0">Filter By:</h5>
-            <div class="form-group me-2">
-                <label for="category">Category:</label>
-                <select name="category" id="category">
-                    <option value="">All</option>
-                    @foreach ($categories as $categoryId => $categoryName)
-                        <option value="{{ $categoryId }}" @if (request('category') == $categoryId) selected @endif>{{ $categoryName }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="form-group me-2">
-                <label for="is_featured">Featured:</label>
-                <select name="is_featured" id="is_featured">
-                    <option value="">All</option>
-                    <option value="1" @if (request('is_featured') == '1') selected @endif>Yes</option>
-                    <option value="0" @if (request('is_featured') == '0') selected @endif>No</option>
-                </select>
-            </div>
-
-            <div class="form-group me-2">
-                <label for="tag">Tag:</label>
-                <select name="tag" id="tag">
-                    <option value="">All</option>
-                    @foreach ($tags as $tag)
-                        <option value="{{ $tag->name }}" @if (request('tag') == $tag->name) selected @endif>{{ $tag->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="form-group">
-                <button type="submit" class="btn btn-default btn-default-sm">Apply Filters</button>
-            </div>
-        </form>
-    </div>
-
+                        </div>
                     </div>
                     <!-- Posts Filter Options End -->
 
