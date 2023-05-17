@@ -70,7 +70,7 @@
                                                 @if ($post->is_featured)
                                                     <p class="badge badge-success">{{ __('Featured') }}</p>
                                                 @else
-                                                    <p class="badge badge-light">{{ __('Not Featured') }}</p>
+                                                    <p class="badge badge-secondary">{{ __('Not Featured') }}</p>
                                                 @endif
                                             </td>
 

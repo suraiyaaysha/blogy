@@ -71,7 +71,7 @@
                                                 @if ($category->is_featured)
                                                     <p class="badge badge-success">Featured</p>
                                                 @else
-                                                    <p class="badge badge-light">Not Featured</p>
+                                                    <p class="badge badge-secondary">Not Featured</p>
                                                 @endif
                                             </td>
                                             <td>

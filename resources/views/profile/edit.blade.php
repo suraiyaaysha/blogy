@@ -3,11 +3,23 @@
 
     @section('content')
 
-    <x-slot name="header">
+    {{-- <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Profile') }}
         </h2>
-    </x-slot>
+    </x-slot> --}}
+
+    {{-- Page Banner --}}
+    <section class="search-area">
+        <div class="container">
+
+        <div class="row">
+            <div class="col-lg-9 text-center mx-auto">
+                <h4>{{ __('Profile') }}</h4>
+            </div>
+        </div>
+        </div>
+    </section>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">

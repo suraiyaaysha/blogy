@@ -13,57 +13,57 @@ body {
 }
 
 h3 {
-  font-size: 64px;
-  line-height: 72px;
-  font-weight: 700;
+  font-size: 64px!important;
+  line-height: 72px!important;
+  font-weight: 700!important;
   font-family: "PT Serif", serif;
   color: #272343;
 }
 
 h4 {
-  font-size: 40px;
-  line-height: 48px;
-  font-weight: 700;
+  font-size: 40px!important;
+  line-height: 48px!important;
+  font-weight: 700!important;
   font-family: "PT Serif", serif;
   color: #272343;
 }
 
 h5 {
-  font-size: 32px;
-  line-height: 38px;
-  font-weight: 700;
+  font-size: 32px!important;
+  line-height: 38px!important;
+  font-weight: 700!important;
   font-family: "PT Serif", serif;
   color: #272343;
 }
 
 h6 {
-  font-size: 28px;
-  line-height: 36px;
-  font-weight: 700;
+  font-size: 28px!important;
+  line-height: 36px!important;
+  font-weight: 700!important;
   font-family: "PT Serif", serif;
   color: #272343;
 }
 
 p {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 16px!important;
+  font-weight: 400!important;
   font-family: "Poppins", sans-serif;
 }
 
 @media (max-width: 420px) {
   h3 {
-    font-size: 30px;
-    line-height: 38px;
+    font-size: 30px!important;
+    line-height: 38px!important;
   }
   h4 {
-    font-size: 28px;
-    line-height: 36px;
+    font-size: 28px!important;
+    line-height: 36px!important;
   }
   h5 {
-    font-size: 24px;
+    font-size: 24px!important;
   }
   p {
-    font-size: 14px;
+    font-size: 14px!important;
   }
   .fs-6 {
     font-size: 14px !important;
@@ -268,8 +268,8 @@ Version      : 1.0
 }
 
 .banner-content-main h4 {
-  margin-bottom: 12px;
-  font-size: 48px;
+  margin-bottom: 12px!important;
+  font-size: 48px!important;
 }
 
 .banner-content-main h4 a {
@@ -848,8 +848,8 @@ Version      : 1.0
 }
 
 .blog-item-feature-heading h4 {
-  padding-bottom: 10px;
-  position: relative;
+  padding-bottom: 10px!important;
+  position: relative!important;
 }
 
 .blog-item-feature-heading h4::after {
@@ -1167,24 +1167,26 @@ Version      : 1.0
 
 .btn-link {
   padding: 0;
-  color: #272343;
-  font-weight: 500;
-  font-family: "Poppins", sans-serif;
-  font-size: 16px;
+  color: #272343!important;
+  font-weight: 500!important;
+  font-family: "Poppins", sans-serif!important;
+  font-size: 16px!important;
+    display: flex!important;
+    align-items: center!important;
 }
 
 .btn-link svg {
-  margin-left: 8px;
-  color: #272343;
+  margin-left: 8px!important;
+  color: #272343!important;
 }
 
 .btn-link:hover {
-  color: #FB743E;
+  color: #FB743E!important;
 }
 
 .btn-link:hover svg {
-  color: #FB743E;
-  margin-left: 10px;
+  color: #FB743E!important;
+  margin-left: 10px!important;
 }
 
 .social-links a, .social-links button {
@@ -1476,10 +1478,11 @@ Version      : 1.0
   color: #272343;
 }
 
-.post-feature .btn,
-.post-feature .btn-default {
-  -webkit-transition: 0s !important;
-  transition: 0s !important;
+.post-feature .btn, .post-feature .btn-default {
+    -webkit-transition: 0s !important;
+    transition: 0s !important;
+    display: flex;
+    align-items: center;
 }
 
 footer {

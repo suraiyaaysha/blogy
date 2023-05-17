@@ -1,8 +1,9 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('admin/dashboard') }}" class="brand-link">
-      <img src="{{ asset(url('admin/assets/img/AdminLTELogo.png')) }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">{{ __('AdminLTE 3') }}</span>
+      {{-- <img src="{{ asset(url('admin/assets/img/AdminLTELogo.png')) }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">{{ __('AdminLTE 3') }}</span> --}}
+      <img src="{{ asset(url($cms->app_logo)) }}" alt="logo">
     </a>
 
     <!-- Sidebar -->

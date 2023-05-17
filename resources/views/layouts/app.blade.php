@@ -13,6 +13,12 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <!-- Bootstrap CSS Link -->
+        <link rel="stylesheet" href="{{ asset(url('frontend/assets/css/vendor/bootstrap.min.css')) }}">
+        <!-- Theme CSS Link -->
+        {{-- <link rel="stylesheet" href="{{ asset(url('frontend/assets/css/main.css')) }}"> --}}
+
     </head>
     {{-- <body class="font-sans antialiased"> --}}
     <body class="">
