@@ -14,6 +14,7 @@ use App\Http\Controllers\SocialShareController;
 use App\Http\Controllers\NewsletterController;
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +33,12 @@ use App\Http\Controllers\Admin\DashboardController;
 
 
 
-Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
+// Route::get('/home', [HomeController::class, 'authRedirect'])->middleware('auth')->name('home');
+// Route::get('/', [HomeController::class, 'authRedirect'])->middleware('auth')->name('home');
 // Route::get('/post', [HomeController::class, 'post'])->middleware(['auth', 'admin'])->name('post');
+
+// This Route is only for Default User Login
+Route::get('/dashboard', [HomeController::class, 'authRedirect'])->middleware('auth')->name('home');
 
 
 // Route::get('/dashboard', function () {
@@ -54,6 +59,8 @@ require __DIR__.'/auth.php';
 |--------------------------------------------------------------------------
 */
 Route::get('/', [FrontendController::class, 'index'])->name('home');
+
+
 // Route::get('/', function () {
 //     return view('frontend.home');
 // });
@@ -66,6 +73,9 @@ Route::get('/', [FrontendController::class, 'latestPost']);
 
 // Get Featured Posts
 Route::get('/', [FrontendController::class, 'featuredPosts']);
+
+// Home Banner Slider
+Route::get('/', [FrontendController::class, 'postSlider']);
 
 // Only Posts Page
 Route::get('/posts', [FrontendController::class, 'allPosts'])->name('posts.index');
@@ -145,11 +155,12 @@ Route::prefix('admin')->group(function () {
 
     // Route::middleware('auth')->group(function () {
     Route::middleware(['auth', 'admin'])->group(function () {
-        // Dashboard
-        Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+        // Dashboard || This Route is only for Admin Login
+        Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
 
         // For Admin Dashboard
-        Route::get('/dashboard', [DashboardController::class, 'showAllInformation'])->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'showAllInformation'])->name('admin.dashboard');
 
         // Category Route
 
@@ -188,6 +199,9 @@ Route::prefix('admin')->group(function () {
         Route::get('tag/{id}/edit', [TagController::class, 'edit'])->name('tag.edit');
         Route::put('tag/{id}/update', [TagController::class, 'update'])->name('tag.update');
         Route::delete('tag/{id}/delete', [TagController::class, 'destroy'])->name('tag.destroy');
+
+        // Settings Route
+        Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
 
     });
 
