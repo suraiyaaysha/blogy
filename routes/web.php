@@ -13,6 +13,8 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\SocialShareController;
 use App\Http\Controllers\NewsletterController;
 
+use App\Http\Controllers\Admin\DashboardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -136,7 +138,8 @@ Route::get('/posts', [FrontendController::class, 'filterPosts'])->name('posts.in
 //     return view('admin.dashboard');
 // })->middleware(['auth', 'admin'])->name('dashboard');
 
-// Route::get('admin/dashboard', [HomeController::class, 'index'])->middleware('auth')->name('admin.dashboard');
+// Route::get('admin/dashboard', [DashboardController::class, 'showCategory'])->middleware(['auth', 'admin'])->name('admin.dashboard');
+// Route::get('admin/dashboard', [DashboardController::class, 'showCategory'])->middleware(['auth', 'admin']);
 
 Route::prefix('admin')->group(function () {
 
@@ -144,6 +147,9 @@ Route::prefix('admin')->group(function () {
     Route::middleware(['auth', 'admin'])->group(function () {
         // Dashboard
         Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+        // For Admin Dashboard
+        Route::get('/dashboard', [DashboardController::class, 'showAllInformation'])->name('dashboard');
 
         // Category Route
 
