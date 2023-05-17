@@ -18,10 +18,6 @@
                 @endif
             </div>
 
-            {{-- <h1 class="m-0">Create ategories</h1> --}}
-
-            <a href="{{ url('admin/posts') }}" class="btn btn-primary mr-2 float-right">Go Post List</a>
-
           </div><!-- /.col -->
 
         </div><!-- /.row -->
@@ -50,9 +46,9 @@
 
                                 <div class="card-body">
 
-                                    <img src="{{ asset(url($cms->home_banner_img)) }}" alt="Image">
+                                    <img src="{{ asset(url($cms->home_banner_img)) }}" alt="Image" class="settings-banner-img">
 
-                                    <div class="form-group">
+                                    <div class="form-group mt-3">
                                         <label>Banner Image upload</label>
                                         <input type="file" class="form-control" name="home_banner_img">
 
@@ -67,14 +63,14 @@
 
                             <div class="card card-primary mb-4">
                                 <div class="card-header">
-                                    <h3 class="card-title">Home Logo</h3>
+                                    <h3 class="card-title">Website Logo</h3>
                                 </div>
 
                                 <div class="card-body">
 
                                     <img src="{{ asset(url($cms->app_logo)) }}" alt="Image">
 
-                                    <div class="form-group">
+                                    <div class="form-group mt-3">
                                         <label>Logo upload</label>
                                         <input type="file" class="form-control" name="app_logo">
 

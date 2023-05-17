@@ -1,17 +1,31 @@
 @foreach($comments as $comment)
     <div class="display-comment mt-3" @if($comment->parent_id != null) style="margin-left:40px;" @endif>
-        <strong>{{ $comment->user->name }}</strong>
-        <p>{{ $comment->body }}</p>
+        <div class="comments">
+            <div class="comments-owner">
+                <div class="comments-owner-image">
+                    <a href="#" class="d-block">
+                        <img src="{{ asset($comment->user->profile_photo) }}" alt="Image">
+                    </a>
+                </div>
+                <div class="comments-owner-text">
+                    <p><a href="#">{{ $comment->user->name }}</a></p>
+                    <span>{{ $comment->created_at }}</span>
+                </div>
+            </div>
+            <p>{{ $comment->body }}</p>
+        </div>
+
+
         <a href="" id="reply"></a>
         <form method="post" action="{{ route('comments.store') }}">
             @csrf
             <div class="form-group">
-                <input type="text" name="body" class="form-control" />
-                <input type="hidden" name="post_id" value="{{ $post_id }}" />
-                <input type="hidden" name="parent_id" value="{{ $comment->id }}" />
+                <input type="text" name="body" class="form-control">
+                <input type="hidden" name="post_id" value="{{ $post_id }}">
+                <input type="hidden" name="parent_id" value="{{ $comment->id }}">
             </div>
-            <div class="form-group mb-3">
-                <input type="submit" class="btn btn-warning  bg-warning" value="Reply" />
+            <div class="form-group mb-3 mt-3">
+                <input type="submit" class="btn-default btn-default-sm" value="Reply" />
             </div>
         </form>
         @include('frontend.posts.commentsDisplay', ['comments' => $comment->replies])

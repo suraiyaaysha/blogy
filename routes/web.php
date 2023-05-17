@@ -123,9 +123,11 @@ Route::get('/tags/{slug}', [FrontendController::class, 'showTag'])->name('tags.i
 Route::get('/posts/{post_slug}', [SocialShareController::class, 'socialShare']);
 
 // Newsletter
-Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('subscribe');
-Route::get('/admin/subscriber-list', [NewsletterController::class, 'showSubscriber']);
-Route::delete('/admin/subscriber-list/{id}/delete', [NewsletterController::class, 'destroy']);
+ Route::middleware(['auth', 'admin'])->group(function () {
+    Route::post('/subscribe', [NewsletterController::class, 'subscribe'])->name('subscribe');
+    Route::get('/admin/subscriber-list', [NewsletterController::class, 'showSubscriber']);
+    Route::delete('/admin/subscriber-list/{id}/delete', [NewsletterController::class, 'destroy']);
+});
 
 // Search
 Route::get('/search', [FrontendController::class, 'search'])->name('search');

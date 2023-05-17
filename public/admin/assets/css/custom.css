@@ -9,4 +9,8 @@
     min-width: 117px;
     max-width: 100%;
 }
+.settings-banner-img {
+    max-height: 500px;
+    width: 100%;
+}
 

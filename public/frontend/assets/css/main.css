@@ -940,8 +940,8 @@ Version      : 1.0
 
 .comments-area-content .comments {
   margin-bottom: 24px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid rgba(109, 114, 128, 0.2);
+  /* padding-bottom: 24px;
+  border-bottom: 1px solid rgba(109, 114, 128, 0.2); */
 }
 
 .comments-area-content .comments-owner {

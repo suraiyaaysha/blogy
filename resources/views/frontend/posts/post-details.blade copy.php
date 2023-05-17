@@ -228,38 +228,63 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 mx-auto">
-                    <div class="comment-box-wrap">
-                        <h5>Leave a Comment</h5>
 
-                        <form method="post" action="{{ route('comments.store') }}">
-                            @csrf
-                            <div class="form-group">
-                                <textarea class="form-control" name="body"></textarea>
-                                <input type="hidden" name="post_id" value="{{ $post->id }}">
-                            </div>
-                            <div class="form-group">
-                                @guest
-                                <div class="d-flex justify-content-lg-end">
-                                    <a href="{{ route('login') }}" class="btn-default">Login</a>
-                                </div>
-                                @endguest
-                                @auth
-                                <div class="d-flex justify-content-lg-end">
-                                    <input type="submit" class="btn-default" value="Post Comment">
-                                </div>
-                                @endauth
-                            </div>
-                        </form>
+                    <h5>Leave a Comment</h5>
 
-                        <div class="comments-area-content">
-                            <div class="comments">
-                                @include('frontend.posts.commentsDisplay', [
-                                    'comments' => $post->comments,
-                                    'post_id' => $post->id,
-                                ])
+                    {{-- @include('frontend.posts.commentsDisplay', [
+                        'comments' => $post->comments,
+                        'post_id' => $post->id,
+                    ])
+
+                    <form action="#">
+                        <div class="row g-3">
+                            <div class="col-lg-6">
+                              <input type="text" class="form-control" placeholder="Your name">
+                            </div>
+                            <div class="col-lg-6">
+                              <input type="email" class="form-control" placeholder="Your email">
                             </div>
                         </div>
-                        
+                        <textarea class="form-control" placeholder="Your Comments"></textarea>
+                        <div class="d-flex justify-content-lg-end">
+                            <button type="submit" class="btn-default">Post Commnent</button>
+                        </div>
+                    </form> --}}
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>Display Comments</h4>
+
+                            @include('frontend.posts.commentsDisplay', [
+                                'comments' => $post->comments,
+                                'post_id' => $post->id,
+                            ])
+
+                            <hr />
+                            <h4 class="mt-5">Add comment</h4>
+                            <form method="post" action="{{ route('comments.store') }}">
+                                @csrf
+                                <div class="form-group">
+                                    <textarea class="form-control" name="body"></textarea>
+                                    <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                </div>
+                                <div class="form-group">
+                                    {{-- <input type="submit" class="btn btn-success bg-success {{ Auth::check() ? '' : 'disabled' }}" value="Add Comment"> --}}
+                                    {{-- <input type="submit" class="btn btn-success bg-success {{ Auth::check() ? '' : 'disabled' }}" value="Add Comment"> --}}
+                                    @guest
+                                    <div class="d-flex justify-content-lg-end">
+                                        <a href="{{ route('login') }}" class="btn btn-default">Login</a>
+                                    </div>
+                                    @endguest
+                                    @auth
+                                    <div class="d-flex justify-content-lg-end">
+                                        {{-- <input type="submit" class="btn-default" value="Add Comment"> --}}
+                                        <button type="submit" class="btn-default">Post Commnent</button>
+                                    </div>
+                                    @endauth
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

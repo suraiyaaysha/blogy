@@ -35,86 +35,67 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-          <li class="nav-item">
-            <a href="{{ url('admin/dashboard') }}" class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                {{ __('Dashboard') }}
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="{{ url('/admin/category') }}" class="nav-link {{ Request::is('admin/category') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-th"></i>
-              <p>{{ __('Categories') }}</p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="{{ url('/admin/posts') }}" class="nav-link {{ Request::is('admin/posts') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-columns"></i>
-              <p>{{ __('Blog Posts') }}</p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                {{ __('Tags') }}
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-
-              <li class="nav-item">
-                <a href="{{ url('/admin/tag') }}" class="nav-link {{ Request::is('admin/tag') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>{{ ('Tag List') }}</p>
+            <li class="nav-item">
+                <a href="{{ url('admin/dashboard') }}" class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    {{ __('Dashboard') }}
+                </p>
                 </a>
-              </li>
+            </li>
 
-              <li class="nav-item">
-                <a href="{{ url('/admin/tag/create') }}" class="nav-link {{ Request::is('admin/tag/create') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>{{ __('Create Tag') }}</p>
+            <li class="nav-item">
+                <a href="{{ url('/admin/category') }}" class="nav-link {{ Request::is('admin/category') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>{{ __('Categories') }}</p>
                 </a>
-              </li>
-            </ul>
-          </li>
+            </li>
 
-          <li class="nav-item">
-            <a href="{{ url('/admin/subscriber-list') }}" class="nav-link {{ Request::is('admin/subscriber-list') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-th"></i>
-              <p>{{ __('Subscribers') }}</p>
-            </a>
-          </li>
+            <li class="nav-item">
+                <a href="{{ url('/admin/posts') }}" class="nav-link {{ Request::is('admin/posts') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-columns"></i>
+                <p>{{ __('Blog Posts') }}</p>
+                </a>
+            </li>
 
             <li class="nav-item">
                 <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
-                    {{ __('Settings') }}
+                    {{ __('Tags') }}
                     <i class="right fas fa-angle-left"></i>
                 </p>
                 </a>
                 <ul class="nav nav-treeview">
 
-                    <li class="nav-item">
-                        <a href="{{ url('/admin/tag') }}" class="nav-link {{ Request::is('admin/tag') ? 'active' : '' }}">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>{{ ('Home Page Slider') }}</p>
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{ url('/admin/tag') }}" class="nav-link {{ Request::is('admin/tag') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>{{ ('Tag List') }}</p>
+                    </a>
+                </li>
 
-                    <li class="nav-item">
-                        <a href="{{ url('/admin/tag/create') }}" class="nav-link {{ Request::is('admin/tag/create') ? 'active' : '' }}">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>{{ __('Website Settings') }}</p>
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{ url('/admin/tag/create') }}" class="nav-link {{ Request::is('admin/tag/create') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>{{ __('Create Tag') }}</p>
+                    </a>
+                </li>
                 </ul>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ url('/admin/subscriber-list') }}" class="nav-link {{ Request::is('admin/subscriber-list') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>{{ __('Subscribers') }}</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ url('/admin/settings') }}" class="nav-link {{ Request::is('admin/settings') ? 'active' : '' }}">
+                <i class="ion-android-settings nav-icon mr-1"></i>
+                <p>{{ __('Website Settings') }}</p>
+                </a>
             </li>
 
         </ul>
