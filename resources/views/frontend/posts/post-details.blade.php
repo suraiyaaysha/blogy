@@ -251,6 +251,8 @@
                             </div>
                         </form>
 
+                        {{-- Comment Part Start --}}
+                        <h5>{{ __('Comments') }} <span>({{ $post->comments->count() }})</span></h5>
                         <div class="comments-area-content">
                             <div class="comments">
                                 @include('frontend.posts.commentsDisplay', [
@@ -259,7 +261,7 @@
                                 ])
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

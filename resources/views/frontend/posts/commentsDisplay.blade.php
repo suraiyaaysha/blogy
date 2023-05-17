@@ -9,7 +9,7 @@
                 </div>
                 <div class="comments-owner-text">
                     <p><a href="#">{{ $comment->user->name }}</a></p>
-                    <span>{{ $comment->created_at }}</span>
+                    <span>{{ $comment->created_at->format('F j, Y') }}</span>
                 </div>
             </div>
             <p>{{ $comment->body }}</p>
