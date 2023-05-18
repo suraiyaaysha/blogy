@@ -22,7 +22,7 @@
                                             <span>{{ $post->reading_duration }} {{ __('read') }}</span>
                                         </div>
                                     </div>
-                                    <p>{{ Str::limit($post->details, 150) }}</p>
+                                    <p>{!! Str::limit($post->details, 150) !!}</p>
                                     <a href="{{ url('/posts/' . $post->slug) }}" class="btn btn-default d-inline-block">{{ __('Read More') }}</a>
                                 </div>
                             </div>
