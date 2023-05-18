@@ -43,7 +43,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="/admin/category/{{ $category->id }}/update" method="POST">
+                        <form action="/admin/category/{{ $category->id }}/update" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="card-body">

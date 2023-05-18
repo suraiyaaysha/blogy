@@ -38,7 +38,8 @@ class CategoryController extends Controller
         // validate data
         $request->validate([
             'name' => 'required|max:255',
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:15000',
+            // 'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:15000',
+            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:15000',
         ]);
 
         $file = $request->thumbnail;
@@ -47,7 +48,7 @@ class CategoryController extends Controller
         $category = new Category;
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
-        $category->thumbnail = $request->thumbnail;
+        $category->thumbnail = $url;
         $category->is_featured = $request->has('is_featured');
 
         $category->save();
@@ -87,24 +88,25 @@ class CategoryController extends Controller
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:15000',
         ]);
 
+
+        $category = Category::where('id', $id)->first();
+
         if ($request->hasFile('thumbnail')) {
             $file = $request->thumbnail;
             $url = $file->move('uploads/blog-img' , $file->hashName());
         } else {
-            $url = $category->posts()->find($post_id)->thumbnail;
+            // $url = $category->posts()->find($post_id)->thumbnail;
+            $url = $category->find($id)->thumbnail;
         }
-
-        $category = Category::where('id', $id)->first();
 
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
-        $category->thumbnail = $request->thumbnail;
+        $category->thumbnail = $url;
         $category->is_featured = $request->has('is_featured');
 
         $category->save();
 
-        // return view('admin.category.index', compact('category', 'categories'))->withSuccess('Category updated successfully');
-        return back()->withSuccess('Category Updated successfully');
+        return redirect('admin/category')->with('message', 'Category Updated successfully');
     }
 
     /**
