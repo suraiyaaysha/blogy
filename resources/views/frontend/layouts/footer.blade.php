@@ -52,7 +52,6 @@
                 </div>
             </div>
             <div class="copy-right">
-                {{-- <p>&copy; {{ date('Y') }} - {{ __('Blogy') }}</p> --}}
                 <p>&copy; {{ date('Y') }} - {{ env('APP_NAME') }}</p>
                 <p>{{ __('Designed & Develop by') }} <a href="{{ $cms->company_url }}" target="_blank">{{ $cms->company_name }}</a></p>
             </div>

@@ -32,12 +32,6 @@ use App\Http\Controllers\CmsController;
 //     return view('welcome');
 // });
 
-
-
-// Route::get('/home', [HomeController::class, 'authRedirect'])->middleware('auth')->name('home');
-// Route::get('/', [HomeController::class, 'authRedirect'])->middleware('auth')->name('home');
-// Route::get('/post', [HomeController::class, 'post'])->middleware(['auth', 'admin'])->name('post');
-
 // This Route is only for Default User Login
 Route::get('/dashboard', [HomeController::class, 'authRedirect'])->middleware('auth')->name('home');
 
@@ -60,11 +54,6 @@ require __DIR__.'/auth.php';
 |--------------------------------------------------------------------------
 */
 Route::get('/', [FrontendController::class, 'index'])->name('home');
-
-
-// Route::get('/', function () {
-//     return view('frontend.home');
-// });
 
 // Get Featured Category
 Route::get('/', [FrontendController::class, 'featuredCategory']);
@@ -101,16 +90,6 @@ Route::post('/posts/{post}/like', [FrontendController::class, 'like'])->name('po
 Route::delete('/posts/{post}/unlike', [FrontendController::class, 'unlike'])->name('posts.unlike');
 
 
-// Comment App url
-// Route::get('/posts', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
-// Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create');
-// Route::post('posts/store', [App\Http\Controllers\PostController::class, 'store'])->name('posts.store');
-
-// Route::get('posts/show/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
-// Route::post('comments/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
-
-
-
 // Route::get('posts/show/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
 Route::post('comments/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
 // Comment App url
@@ -136,31 +115,13 @@ Route::get('/search', [FrontendController::class, 'search'])->name('search');
 Route::get('/posts', [FrontendController::class, 'filterPosts'])->name('posts.index');
 
 /*
-|-----------------------------
-| Category, Post, Category wise posts
-|--------------------------------------------------------------------------
-*/
-
-// Route::get('/collections', [FrontendController::class, 'index']);
-// Route::get('/collections/{category_slug}', [FrontendController::class, 'category']);
-// Route::get('/collections/{category_slug}/{post_slug}', [FrontendController::class, 'post']);
-
-
-/*
 |--------------------------------------------------------------------------
 | Admin Panel Routes Start
 |--------------------------------------------------------------------------
 */
-// Route::get('/admin/dashboard', function () {
-//     return view('admin.dashboard');
-// })->middleware(['auth', 'admin'])->name('dashboard');
-
-// Route::get('admin/dashboard', [DashboardController::class, 'showCategory'])->middleware(['auth', 'admin'])->name('admin.dashboard');
-// Route::get('admin/dashboard', [DashboardController::class, 'showCategory'])->middleware(['auth', 'admin']);
 
 Route::prefix('admin')->group(function () {
 
-    // Route::middleware('auth')->group(function () {
     Route::middleware(['auth', 'admin'])->group(function () {
 
         // Dashboard || This Route is only for Admin Login
@@ -170,10 +131,6 @@ Route::prefix('admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'showAllInformation'])->name('admin.dashboard');
 
         // Category Route
-
-        // Route::controller(App\Http\Controllers\CategoryController::class)->group(function () {
-        //     Route::get('category', 'index');
-        // });
 
         Route::get('category', [CategoryController::class, 'index'])->name('category.index');
         Route::get('category/create', [CategoryController::class, 'create'])->name('category.create');
@@ -213,10 +170,6 @@ Route::prefix('admin')->group(function () {
         Route::controller(CmsController::class)->group(function(){
             Route::get('settings', 'home');
             Route::put('settings', 'homeUpdate')->name('settings.homeUpdate');
-            // Route::get('admin/about', 'about')->name('about');
-            // Route::put('admin/about', 'aboutUpdate')->name('about.aboutUpdate');
-            // Route::get('admin/contact', 'contact')->name('contact');
-            // Route::put('admin/contact', 'contactUpdate')->name('contact.contactUpdate');
         });
 
     });
