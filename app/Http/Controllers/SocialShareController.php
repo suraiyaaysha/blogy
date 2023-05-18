@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
-use App\Models\Cms;
+use App\Share;
+// use Share;
 
 class SocialShareController extends Controller
 {
