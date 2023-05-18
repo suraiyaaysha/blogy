@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
 use App\Share;
-// use Share;
 
 class SocialShareController extends Controller
 {
